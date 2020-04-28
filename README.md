@@ -17,6 +17,7 @@ python3 manage.py runserver 0.0.0.0:8080
 ```
 ### 证书说明
 因为证书文件不为统一生成,分别放置位置为:
+```
 ca : credit_k8s/roles/ca/templates
 etcd : credit_k8s/roles/etcd/templates
 admin : credit_k8s/roles/{kube-master,kube-node}/templates
@@ -25,5 +26,5 @@ aggregator-proxy : credit_k8s/roles/{kube-master,kube-node}/templates
 kube-proxy : credit_k8s/roles/kube-node/templates
 kubernetes : credit_k8s/roles/kube-master/templates
 因为证书需要读取主机ip,所以分布存放,有些修改需要修改多处,后期修改.
-
+```
 ### 二进制包安装问题
