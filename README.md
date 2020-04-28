@@ -8,13 +8,13 @@ hosts文件中因为分组名称在使用ansible安装时会通过分组名来�
 默认证书文件保存位置 /opt/ssl
 
 ### 启动命令
-‘’‘
+'''
 git clone https://github.com/airring/k8s_install
 cd k8s_install
 pip3 install -r ./requirements.txt
 cp ./hosts /etc/ansible/hosts
 python3 manage.py runserver 0.0.0.0:8080
-’‘’
+'''
 ### 证书说明
 因为证书文件不为统一生成,分别放置位置为:
 ca : credit_k8s/roles/ca/templates
