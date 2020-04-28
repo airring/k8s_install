@@ -90,16 +90,7 @@
     <div class="navigation-menu-body">
         <ul>
             <li class="navigation-divider">Main</li>
-            <li class="open">
-                <a href="default.html">
-                    <i class="nav-link-icon" data-feather="bar-chart-2"></i>
-                    <span>Dashboard</span>
-                </a>
-                <ul>
-                    <li><a class="active" href="default.html">Dashboard 1</a></li>
-                    <li><a href="dashboard-two.html">Dashboard 2</a></li>
-                </ul>
-            </li>
+
             <li>
                 <a href="init">
                     <i class={% block init %}{% endblock %} data-feather="message-circle"></i>
@@ -107,32 +98,20 @@
                     <span class="badge badge-danger">2</span>
                 </a>
             </li>
-            <li>
-                <a href="inbox.html">
-                    <i class="nav-link-icon" data-feather="mail"></i>
-                    <span>Mail</span>
-                    <span class="badge badge-success">2</span>
+            <li >
+                <!-- <li class="open"> -->
+                <a href="default.html">
+                    <i class="nav-link-icon" data-feather="bar-chart-2"></i>
+                    <span>集群管理</span>
                 </a>
+                <ul>
+                    <li><a href="#">添加etcd</a></li>
+                    <li><a href="#">添加kube-master</a></li>
+                    <li><a href="#">添加kube-node</a></li>
+
+                </ul>
             </li>
-            <li>
-                <a href="app-todo.html">
-                    <i class="nav-link-icon" data-feather="check-circle"></i>
-                    <span>Todo</span>
-                    <span class="badge badge-warning">2</span>
-                </a>
-            </li>
-            <li>
-                <a href="file-manager.html">
-                    <i class="nav-link-icon" data-feather="file"></i>
-                    <span>File Manager</span>
-                </a>
-            </li>
-            <li>
-                <a href="calendar.html">
-                    <i class="nav-link-icon" data-feather="calendar"></i>
-                    <span>Calendar</span>
-                </a>
-            </li>
+
 
         </ul>
     </div>

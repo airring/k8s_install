@@ -54,8 +54,7 @@ ROOT_URLCONF = 'k8s.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,13 +70,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'k8s.wsgi.application'
 
 DATABASES = {
-    'default':{
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
-                'NAME': 'kubernetes',
-                'USER': 'root',
-                'PASSWORD': 'rrjc2018',
-                'HOST': '192.168.3.105',
-                'PORT': '3306',
+        'NAME': 'kubernetes',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
@@ -87,7 +86,7 @@ LOGGING = {
     'disable_existing_loggers': True,
     'formatters': {
        'standard': {
-            'format': '%(asctime)s [%(threadName)s:%(thread)d] [%(name)s:%(lineno)d] [%(module)s:%(funcName)s] [%(levelname)s]- %(message)s'}  #日志格式
+            'format': '%(asctime)s [%(threadName)s:%(thread)d] [%(name)s:%(lineno)d] [%(module)s:%(funcName)s] [%(levelname)s]- %(message)s'}  # 日志格式
     },
     'filters': {
     },
@@ -98,41 +97,41 @@ LOGGING = {
             'include_html': True,
         },
         'default': {
-            'level':'ERROR',
-            'class':'logging.handlers.RotatingFileHandler',
-            'filename': 'log/assce.log',     #日志输出文件
-            'maxBytes': 1024*1024*5,                  #文件大小
-            'backupCount': 5,                         #备份份数
-            'formatter':'standard',                   #使用哪种formatters日志格式
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'log/assce.log',     # 日志输出文件
+            'maxBytes': 1024*1024*5,                  # 文件大小
+            'backupCount': 5,                         # 备份份数
+            'formatter': 'standard',                   # 使用哪种formatters日志格式
         },
         'error': {
-            'level':'ERROR',
-            'class':'logging.handlers.RotatingFileHandler',
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': 'log/error.log',
-            'maxBytes':1024*1024*5,
+            'maxBytes': 1024*1024*5,
             'backupCount': 5,
-            'formatter':'standard',
+            'formatter': 'standard',
         },
-        'console':{
+        'console': {
             'level': 'ERROR',
             'class': 'logging.StreamHandler',
             'formatter': 'standard'
         },
         'request_handler': {
-            'level':'ERROR',
-            'class':'logging.handlers.RotatingFileHandler',
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': 'log/script.log',
             'maxBytes': 1024*1024*5,
             'backupCount': 5,
-            'formatter':'standard',
+            'formatter': 'standard',
         },
         'scprits_handler': {
-            'level':'ERROR',
-            'class':'logging.handlers.RotatingFileHandler',
-            'filename':'log/script.log',
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'log/script.log',
             'maxBytes': 1024*1024*5,
             'backupCount': 5,
-            'formatter':'standard',
+            'formatter': 'standard',
         }
     },
     'loggers': {
@@ -156,7 +155,7 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True
         },
-        'sourceDns.webdns.util':{
+        'sourceDns.webdns.util': {
             'handlers': ['error'],
             'level': 'ERROR',
             'propagate': True
@@ -209,11 +208,11 @@ USE_TZ = False
 # TODO 静态文件配置
 STATIC_URL = '/static/'
 LOGIN_URL = '/login'
-STATIC_ROOT = os.path.join(os.path.dirname(__file__),'static')
+STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'static')
 STATICFILES_DIRS = [
-( os.path.join(BASE_DIR, "static")),
-('css',os.path.join(STATIC_ROOT,'css').replace('\\','/')),
-('js',os.path.join(STATIC_ROOT,'js').replace('\\','/')),
-('images',os.path.join(STATIC_ROOT,'img').replace('\\','/')),
-('upload',os.path.join(STATIC_ROOT,'upload').replace('\\','/')),
+    (os.path.join(BASE_DIR, "static")),
+    ('css', os.path.join(STATIC_ROOT, 'css').replace('\\', '/')),
+    ('js', os.path.join(STATIC_ROOT, 'js').replace('\\', '/')),
+    ('images', os.path.join(STATIC_ROOT, 'img').replace('\\', '/')),
+    ('upload', os.path.join(STATIC_ROOT, 'upload').replace('\\', '/')),
 ]
