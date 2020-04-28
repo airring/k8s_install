@@ -1,0 +1,31 @@
+# etcd 集群间通信的IP和端口, 根据etcd组成员自动生成
+TMP_ENDPOINTS: "{% for h in groups['etcd'] %}https://{{ h }}:2379,{% endfor %}"
+ETCD_ENDPOINTS: "{{ TMP_ENDPOINTS.rstrip(',') }}" 
+
+
+MASTER_CERT_HOSTS:
+  - "192.168.3.51"
+  - "k8s.rrjc.com"
+CLUSTER_KUBERNETES_SVC_IP: "{{ SERVICE_CIDR | ipaddr('net') | ipaddr(1) | ipaddr('address') }}"  
+
+NODE_CIDR_LEN: 24
+
+# 是否启用基础认证 yes/no
+BASIC_AUTH_ENABLE: 'no'
+# 用户名：
+BASIC_AUTH_USER: 'admin'
+# 密码：初次运行时会生成随机密码
+BASIC_AUTH_PASS: '_pwd_'
+
+CLUSTER_NAME: "cluster1"
+
+# 设置 APISERVER 地址
+KUBE_APISERVER: "{%- if inventory_hostname in groups['kubeneter-master'] -%} \
+                     https://{{ inventory_hostname }}:6443 \
+                 {%- else -%} \
+                     {%- if groups['kubeneter-master']|length > 1 -%} \
+                         https://127.0.0.1:6443 \
+                     {%- else -%} \
+                         https://{{ groups['kubeneter-master'][0] }}:6443 \
+                     {%- endif -%} \
+                 {%- endif -%}"

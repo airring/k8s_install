@@ -1,0 +1,129 @@
+{% extends 'default.html' %}
+{% load static %}
+{% block init %}active{% endblock %}
+
+{% block head %}
+{% endblock %}
+{% block re_content %}
+        <div class="main-content">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                        <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title">请选择安装版本</h6>
+                            <div class="row">
+                                <div class="col-md-8">
+
+                                        {% for i in packet %}
+                                        <div class="form-group">
+                                            <label for="validationCustom01">{{ i.packet_name }}</label>
+                                            <input type="text" class="form-control" id={{ i.packet_name }} name="packet" placeholder="First name" value={{ i.version }} required>
+                                        </div>
+                                        {% endfor %}
+                                        <div class="form-group form-check">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                        </div>
+                                        <button type="submit" id="tijiao" class="btn btn-primary">开始下载</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                <div class="card">
+                    <div class="card-body">
+                            <div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th scope="col">packet</th>
+            <th scope="col">version</th>
+            <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in packet %}
+        <tr>
+
+            <td>{{ i.packet_name }}</td>
+            <td>{{ i.version }}</td>
+            <td>
+                <div id="jd{{ i.packet_name }}">
+                <span class="badge badge-warning">Pending</span>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button type="button" id="install" class="btn btn-success">安装</button>
+</div>
+                        </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        </div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+$(function (){
+    $("#tijiao").click(function(){
+        var els =document.getElementsByName("packet");
+
+        for (var i = 0, j = els.length; i < j; i++){
+            console.log(els[i].id)
+            $("#jd"+els[i].id).html('<div class="spinner-border text-success" role="status">\n' +
+                '  <span class="sr-only">Loading...</span>\n' +
+                '</div>');
+            {#pack[els[i].id]=els[i].value#}
+            var html = $.ajax({
+            type: "POST",
+            url: "{% url 'init_api' %}",
+            data: JSON.stringify({'name':els[i].id,'version':els[i].value}),
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.status == 1){
+                $("#jd"+data.name).html('<span class="badge badge-info">已完成</span>');
+                }
+                else {
+                $("#jd"+data.name).html('<span class="badge badge-danger">未完成</span>');
+                }
+            }
+        })
+
+
+        }
+    })
+})
+</script>
+<script>
+$(function (){
+    $("#install").click(function(){
+        var els =document.getElementsByClassName('badge badge-info').length;
+        console.log(els);
+        if ( els == 3 ){
+            swal("Good job!", "You clicked the button!", "success")
+            .then((willDelete) => {
+                window.location.href='init_2'
+            });
+
+        }
+        else {
+            swal("error!", "你还有服务没有下载完成!", "error");
+        }
+    })
+})
+</script>
+
+
+{% endblock %}

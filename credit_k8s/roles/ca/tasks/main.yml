@@ -1,0 +1,35 @@
+- name: rsync ca
+  template: src={{ item }} dest={{ ca_dir }}/{{ item | basename | regex_replace('\.j2$', '') }}
+  with_fileglob:
+  - ../templates/*.j2
+
+- name: cfssl添加执行权限 
+  file: path=/opt/cfssl mode=0755
+
+- name: cfssljson添加执行权限
+  file: path=/opt/cfssljson mode=0755
+  
+- name: 创建ssl目录
+  file: path={{ ca_dir }} state=directory
+  ignore_errors: true
+
+- name: 生成ca证书
+  shell: /opt/cfssl gencert -initca {{ ca_dir }}/ca-csr.json | /opt/cfssljson -bare {{ ca_dir }}/ca
+
+# - name: 生成kubernetes证书
+#   shell: /opt/cfssl gencert -ca={{ ca_dir }}/ca.pem -ca-key={{ ca_dir }}/ca-key.pem -config={{ ca_dir }}/ca-config.json -profile=kubernetes {{ ca_dir }}/kubernetes-csr.json | /opt/cfssljson -bare {{ ca_dir }}/kubernetes
+  
+# - name: 生成admin证书
+#   shell: /opt/cfssl gencert -ca={{ ca_dir }}/ca.pem -ca-key={{ ca_dir }}/ca-key.pem -config={{ ca_dir }}/ca-config.json -profile=kubernetes {{ ca_dir }}/admin-csr.json | /opt/cfssljson -bare {{ ca_dir }}/admin
+
+# - name: 生成kube证书
+#   shell: /opt/cfssl gencert -ca={{ ca_dir }}/ca.pem -ca-key={{ ca_dir }}/ca-key.pem -config={{ ca_dir }}/ca-config.json -profile=kubernetes  {{ ca_dir }}/kube-proxy-csr.json | /opt/cfssljson -bare {{ ca_dir }}/kube-proxy
+  
+# - name: 生成etcd证书
+#   shell: /opt/cfssl gencert -ca={{ ca_dir }}/ca.pem -ca-key={{ ca_dir }}/ca-key.pem -config={{ ca_dir }}/ca-config.json -profile=kubernetes {{ ca_dir }}/etcd-csr.json | /opt/cfssljson -bare {{ ca_dir }}/etcd  
+
+# - name: 创建 aggregator-proxy证书和私钥
+#   shell: /opt/cfssl gencert -ca={{ ca_dir }}/ca.pem -ca-key={{ ca_dir }}/ca-key.pem -config={{ ca_dir }}/ca-config.json -profile=kubernetes {{ ca_dir }}/aggregator-proxy-csr.json | /opt/cfssljson -bare {{ ca_dir }}/aggregator-proxy  
+
+# - name: 创建kubelet证书
+#   shell: /opt/cfssl gencert ca={{ ca_dir }}/ca.pem -ca-key={{ ca_dir }}/ca-key.pem -config={{ ca_dir }}/ca-config.json -profile=kubernetes {{ ca_dir }}/kubelet-csr.json | /opt/cfssljson -bare {{ ca_dir }}/kubelet  

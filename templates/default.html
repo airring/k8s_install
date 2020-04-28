@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="static/assets/media/image/favicon.png"/>
+
+    <!-- Plugin styles -->
+    <link rel="stylesheet" href="static/vendors/bundle.css" type="text/css">
+
+    <!-- Datepicker -->
+    <link rel="stylesheet" href="static/vendors/datepicker/daterangepicker.css">
+
+    <!-- Slick -->
+    <link rel="stylesheet" href="static/vendors/slick/slick.css">
+    <link rel="stylesheet" href="static/vendors/slick/slick-theme.css">
+
+    <!-- Vmap -->
+    <link rel="stylesheet" href="static/vendors/vmap/jqvmap.min.css">
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="static/assets/css/app.min.css" type="text/css">
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+<!-- begin::preloader-->
+<div class="preloader">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="50px" height="50px" viewBox="0 0 128 128"
+         xml:space="preserve">
+        <rect x="0" y="0" width="100%" height="100%" fill="#FFFFFF"/>
+        <g>
+            <path d="M75.4 126.63a11.43 11.43 0 0 1-2.1-22.65 40.9 40.9 0 0 0 30.5-30.6 11.4 11.4 0 1 1 22.27 4.87h.02a63.77 63.77 0 0 1-47.8 48.05v-.02a11.38 11.38 0 0 1-2.93.37z"
+                  fill="#000000" fill-opacity="1"/>
+            <animateTransform attributeName="transform" type="rotate" from="0 64 64" to="360 64 64"
+                              dur="500ms" repeatCount="indefinite">
+            </animateTransform>
+        </g>
+    </svg>
+</div>
+<!-- end::preloader -->
+
+<!-- begin::navigation -->
+<div class="navigation">
+
+    <!-- begin::logo -->
+    <div id="logo">
+        <a href="default.html">
+            <img class="logo" src="static/assets/media/image/logo.png" alt="logo">
+            <img class="logo-sm" src="static/assets/media/image/logo-sm.png" alt="small logo">
+            <img class="logo-dark" src="static/assets/media/image/logo-dark.png" alt="dark logo">
+        </a>
+    </div>
+    <!-- end::logo -->
+
+    <!-- begin::navigation header -->
+    <header class="navigation-header">
+        <figure class="avatar avatar-state-success">
+            <img src="static/assets/media/image/user/man_avatar3.jpg" class="rounded-circle" alt="image">
+        </figure>
+        <div>
+            <h5>Nikos Pedlow</h5>
+            <p class="text-muted">Administrator</p>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="profile.html" class="btn nav-link bg-info-bright" title="Profile" data-toggle="tooltip">
+                        <i data-feather="user"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="btn nav-link bg-success-bright" title="Settings" data-toggle="tooltip">
+                        <i data-feather="settings"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="btn nav-link bg-danger-bright" title="Logout" data-toggle="tooltip">
+                        <i data-feather="log-out"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- end::navigation header -->
+
+    <!-- begin::navigation menu -->
+    <div class="navigation-menu-body">
+        <ul>
+            <li class="navigation-divider">Main</li>
+            <li class="open">
+                <a href="default.html">
+                    <i class="nav-link-icon" data-feather="bar-chart-2"></i>
+                    <span>Dashboard</span>
+                </a>
+                <ul>
+                    <li><a class="active" href="default.html">Dashboard 1</a></li>
+                    <li><a href="dashboard-two.html">Dashboard 2</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="init">
+                    <i class={% block init %}{% endblock %} data-feather="message-circle"></i>
+                    <span>初始化</span>
+                    <span class="badge badge-danger">2</span>
+                </a>
+            </li>
+            <li>
+                <a href="inbox.html">
+                    <i class="nav-link-icon" data-feather="mail"></i>
+                    <span>Mail</span>
+                    <span class="badge badge-success">2</span>
+                </a>
+            </li>
+            <li>
+                <a href="app-todo.html">
+                    <i class="nav-link-icon" data-feather="check-circle"></i>
+                    <span>Todo</span>
+                    <span class="badge badge-warning">2</span>
+                </a>
+            </li>
+            <li>
+                <a href="file-manager.html">
+                    <i class="nav-link-icon" data-feather="file"></i>
+                    <span>File Manager</span>
+                </a>
+            </li>
+            <li>
+                <a href="calendar.html">
+                    <i class="nav-link-icon" data-feather="calendar"></i>
+                    <span>Calendar</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    <!-- end::navigation menu -->
+
+</div>
+<!-- end::navigation -->
+
+<!-- begin::main -->
+<div id="main">
+{% block re_content %}
+ {% endblock %}
+    <footer>
+        <div class="container">
+            <div>Copyright &copy; 2019.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></div>
+            <div>
+                <nav class="nav">
+                    <a href="#" class="nav-link">Licenses</a>
+                    <a href="#" class="nav-link">Change Log</a>
+                    <a href="#" class="nav-link">Get Help</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+    <!-- end::footer -->
+
+</div>
+<!-- end::main -->
+
+<!-- Plugin scripts -->
+<script src="static/vendors/bundle.js"></script>
+
+<!-- Chartjs -->
+<script src="static/vendors/charts/chartjs/chart.min.js"></script>
+
+<!-- Apex chart -->
+<script src="static/vendors/charts/apex/apexcharts.min.js"></script>
+
+<!-- Circle progress -->
+<script src="static/vendors/circle-progress/circle-progress.min.js"></script>
+
+<!-- Peity -->
+<script src="static/vendors/charts/peity/jquery.peity.min.js"></script>
+<script src="static/assets/js/examples/charts/peity.js"></script>
+
+<!-- Datepicker -->
+<script src="static/vendors/datepicker/daterangepicker.js"></script>
+
+<!-- Slick -->
+<script src="static/vendors/slick/slick.min.js"></script>
+
+<!-- Vamp -->
+<script src="static/vendors/vmap/jquery.vmap.min.js"></script>
+<script src="static/vendors/vmap/maps/jquery.vmap.usa.js"></script>
+<script src="static/assets/js/examples/vmap.js"></script>
+
+<!-- Dashboard scripts -->
+<script src="static/assets/js/examples/dashboard.js"></script>
+
+{#<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>#}
+{#<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>#}
+{#<script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/autoload.js"></script>#}
+
+<div class="colors"> <!-- To use theme colors with Javascript -->
+    <div class="bg-primary"></div>
+    <div class="bg-primary-bright"></div>
+    <div class="bg-secondary"></div>
+    <div class="bg-secondary-bright"></div>
+    <div class="bg-info"></div>
+    <div class="bg-info-bright"></div>
+    <div class="bg-success"></div>
+    <div class="bg-success-bright"></div>
+    <div class="bg-danger"></div>
+    <div class="bg-danger-bright"></div>
+    <div class="bg-warning"></div>
+    <div class="bg-warning-bright"></div>
+</div>
+
+<!-- App scripts -->
+<script src="static/assets/js/app.min.js"></script>
+{% block js %}
+
+{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+</body>
+</html>

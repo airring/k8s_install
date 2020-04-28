@@ -1,0 +1,547 @@
+2019-12-19 16:01:34,013 [Thread-3:140435104585472] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 713, in _write_bytes
+    self._sock.sendall(data)
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/k8s_install/script/pymysql.py", line 55, in execute
+    cur.execute(sql, args)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/cursors.py", line 170, in execute
+    result = self._query(query)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/cursors.py", line 328, in _query
+    conn.query(q)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 516, in query
+    self._execute_command(COMMAND.COM_QUERY, sql)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 771, in _execute_command
+    self._write_bytes(packet)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 718, in _write_bytes
+    "MySQL server has gone away (%r)" % (e,))
+pymysql.err.OperationalError: (2006, "MySQL server has gone away (BrokenPipeError(32, 'Broken pipe'))")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 15, in init
+    a=pool.execute("select * from packet_install")
+  File "/home/k8s_install/script/pymysql.py", line 59, in execute
+    raise e
+  File "/home/k8s_install/script/pymysql.py", line 56, in execute
+    return cur.fetchone() if return_one else cur.fetchall()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 503, in __exit__
+    self.rollback()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 429, in rollback
+    self._execute_command(COMMAND.COM_QUERY, "ROLLBACK")
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 750, in _execute_command
+    raise err.InterfaceError("(0, '')")
+pymysql.err.InterfaceError: (0, '')
+2019-12-19 16:01:41,243 [Thread-3:140435104585472] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 713, in _write_bytes
+    self._sock.sendall(data)
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/k8s_install/script/pymysql.py", line 55, in execute
+    cur.execute(sql, args)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/cursors.py", line 170, in execute
+    result = self._query(query)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/cursors.py", line 328, in _query
+    conn.query(q)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 516, in query
+    self._execute_command(COMMAND.COM_QUERY, sql)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 771, in _execute_command
+    self._write_bytes(packet)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 718, in _write_bytes
+    "MySQL server has gone away (%r)" % (e,))
+pymysql.err.OperationalError: (2006, "MySQL server has gone away (BrokenPipeError(32, 'Broken pipe'))")
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 15, in init
+    a=pool.execute("select * from packet_install")
+  File "/home/k8s_install/script/pymysql.py", line 59, in execute
+    raise e
+  File "/home/k8s_install/script/pymysql.py", line 56, in execute
+    return cur.fetchone() if return_one else cur.fetchall()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 503, in __exit__
+    self.rollback()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 429, in rollback
+    self._execute_command(COMMAND.COM_QUERY, "ROLLBACK")
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 750, in _execute_command
+    raise err.InterfaceError("(0, '')")
+pymysql.err.InterfaceError: (0, '')
+2019-12-19 16:08:31,411 [Thread-1:140297888634624] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 15, in init
+    pool=ConnectionPool()
+  File "/home/k8s_install/script/pymysql.py", line 18, in __init__
+    self._queue.put(self._create())
+  File "/home/k8s_install/script/pymysql.py", line 25, in _create
+    param
+Exception: Instantiation failed, '192.168.3.105' param is not found.
+2019-12-19 16:14:17,337 [Thread-1:140420331861760] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 15, in init
+    pool=ConnectionPool()
+  File "/home/k8s_install/script/pymysql.py", line 18, in __init__
+    self._queue.put(self._create())
+  File "/home/k8s_install/script/pymysql.py", line 30, in _create
+    param
+Exception: Instantiation failed, 'host' param is not found.
+2019-12-19 16:16:52,827 [Thread-1:140664222250752] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 15, in init
+    pool=ConnectionPool()
+  File "/home/k8s_install/script/pymysql.py", line 18, in __init__
+    self.kwargs = kwargs
+NameError: name 'kwargs' is not defined
+2019-12-19 16:30:16,791 [Thread-1:140626322687744] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 15, in init
+    pool=ConnectionPool()
+  File "/home/k8s_install/script/pymysql.py", line 21, in __init__
+    self._queue.put(self._create())
+  File "/home/k8s_install/script/pymysql.py", line 28, in _create
+    param
+Exception: Instantiation failed, 'host' param is not found.
+2019-12-19 16:32:30,851 [Thread-1:140670857811712] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 15, in init
+    pool=ConnectionPool()
+  File "/home/k8s_install/script/pymysql.py", line 25, in __init__
+    self._queue.put(self._create())
+  File "/home/k8s_install/script/pymysql.py", line 32, in _create
+    param
+Exception: Instantiation failed, 'host' param is not found.
+2019-12-19 16:32:55,868 [Thread-1:139733807658752] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 15, in init
+    pool=ConnectionPool()
+  File "/home/k8s_install/script/pymysql.py", line 25, in __init__
+    self._queue.put(self._create())
+  File "/home/k8s_install/script/pymysql.py", line 36, in _create
+    return pymysql.connect(DB_CONNET)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/__init__.py", line 94, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 325, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 583, in connect
+    **kwargs)
+  File "/usr/local/lib/python3.7/socket.py", line 707, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/local/lib/python3.7/socket.py", line 748, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+TypeError: getaddrinfo() argument 1 must be string or None
+2019-12-19 16:33:24,458 [Thread-1:139733807658752] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 15, in init
+    pool=ConnectionPool()
+  File "/home/k8s_install/script/pymysql.py", line 25, in __init__
+    self._queue.put(self._create())
+  File "/home/k8s_install/script/pymysql.py", line 36, in _create
+    return pymysql.connect(DB_CONNET)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/__init__.py", line 94, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 325, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 583, in connect
+    **kwargs)
+  File "/usr/local/lib/python3.7/socket.py", line 707, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/local/lib/python3.7/socket.py", line 748, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+TypeError: getaddrinfo() argument 1 must be string or None
+2019-12-19 16:33:59,538 [Thread-1:140584046364416] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 15, in init
+    pool=ConnectionPool()
+  File "/home/k8s_install/script/pymysql.py", line 25, in __init__
+    self._queue.put(self._create())
+  File "/home/k8s_install/script/pymysql.py", line 36, in _create
+    return pymysql.connect(DB_CONNET)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/__init__.py", line 94, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 325, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 583, in connect
+    **kwargs)
+  File "/usr/local/lib/python3.7/socket.py", line 707, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/local/lib/python3.7/socket.py", line 748, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+TypeError: getaddrinfo() argument 1 must be string or None
+2019-12-19 16:34:14,474 [Thread-1:139660235380480] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 15, in init
+    pool=ConnectionPool()
+  File "/home/k8s_install/script/pymysql.py", line 25, in __init__
+    self._queue.put(self._create())
+  File "/home/k8s_install/script/pymysql.py", line 36, in _create
+    return pymysql.connect(DB_CONNET)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/__init__.py", line 94, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 325, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 583, in connect
+    **kwargs)
+  File "/usr/local/lib/python3.7/socket.py", line 707, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/local/lib/python3.7/socket.py", line 748, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+TypeError: getaddrinfo() argument 1 must be string or None
+2019-12-19 16:34:27,577 [Thread-1:139660235380480] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 15, in init
+    pool=ConnectionPool()
+  File "/home/k8s_install/script/pymysql.py", line 25, in __init__
+    self._queue.put(self._create())
+  File "/home/k8s_install/script/pymysql.py", line 36, in _create
+    return pymysql.connect(DB_CONNET)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/__init__.py", line 94, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 325, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 583, in connect
+    **kwargs)
+  File "/usr/local/lib/python3.7/socket.py", line 707, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/local/lib/python3.7/socket.py", line 748, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+TypeError: getaddrinfo() argument 1 must be string or None
+2019-12-19 16:36:12,370 [Thread-1:140308023310080] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 15, in init
+    pool=ConnectionPool()
+  File "/home/k8s_install/script/pymysql.py", line 25, in __init__
+    self._queue.put(self._create())
+  File "/home/k8s_install/script/pymysql.py", line 36, in _create
+    return pymysql.connect(DB_CONNET)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/__init__.py", line 94, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 325, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.7/site-packages/pymysql/connections.py", line 583, in connect
+    **kwargs)
+  File "/usr/local/lib/python3.7/socket.py", line 707, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/local/lib/python3.7/socket.py", line 748, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+TypeError: getaddrinfo() argument 1 must be string or None
+2019-12-20 11:32:15,181 [Thread-4:139796940838656] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 25, in init_api
+    return JsonResponse()
+TypeError: __init__() missing 1 required positional argument: 'data'
+2019-12-20 11:33:27,394 [Thread-1:139922078058240] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 27, in init_api
+    return JsonResponse()
+TypeError: __init__() missing 1 required positional argument: 'data'
+2019-12-20 11:34:09,663 [Thread-5:139921847219968] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 27, in init_api
+    return JsonResponse()
+TypeError: __init__() missing 1 required positional argument: 'data'
+2019-12-20 11:35:49,327 [Thread-7:139921830434560] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 27, in init_api
+    return JsonResponse()
+TypeError: __init__() missing 1 required positional argument: 'data'
+2019-12-20 11:37:24,581 [Thread-6:139921838827264] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 27, in init_api
+    return JsonResponse()
+TypeError: __init__() missing 1 required positional argument: 'data'
+2019-12-20 11:38:33,924 [Thread-1:139922078058240] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 27, in init_api
+    return JsonResponse()
+TypeError: __init__() missing 1 required positional argument: 'data'
+2019-12-20 11:41:28,581 [Thread-1:139922078058240] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 27, in init_api
+    return JsonResponse()
+TypeError: __init__() missing 1 required positional argument: 'data'
+2019-12-20 13:53:37,145 [Thread-9:139921847219968] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 27, in init_api
+    return JsonResponse()
+TypeError: __init__() missing 1 required positional argument: 'data'
+2019-12-20 13:55:21,001 [Thread-10:139922069665536] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 27, in init_api
+    return JsonResponse()
+TypeError: __init__() missing 1 required positional argument: 'data'
+2019-12-20 13:58:26,420 [Thread-13:139921830434560] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 27, in init_api
+    return JsonResponse()
+TypeError: __init__() missing 1 required positional argument: 'data'
+2019-12-20 13:58:51,258 [Thread-13:139921830434560] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 27, in init_api
+    return JsonResponse()
+TypeError: __init__() missing 1 required positional argument: 'data'
+2019-12-20 14:05:57,317 [Thread-17:139922078058240] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 27, in init_api
+    return JsonResponse()
+TypeError: __init__() missing 1 required positional argument: 'data'
+2019-12-24 14:29:09,912 [Thread-6:139769904359168] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 28, in init_api
+    pk_version.update('%s:%s' % (i.id,i.version))
+AttributeError: 'dict' object has no attribute 'id'
+2019-12-24 14:29:24,547 [Thread-2:139770144614144] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 28, in init_api
+    pk_version.update('%s:%s' % (i.id,i.version))
+AttributeError: 'dict' object has no attribute 'id'
+2019-12-24 14:30:18,168 [Thread-1:140459484288768] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 29, in init_api
+    pk_version.update('%s:%s' % (i.id,i.version))
+AttributeError: 'dict' object has no attribute 'id'
+2019-12-24 14:31:21,568 [Thread-2:139682045613824] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 28, in init_api
+    logger.error(iq)
+NameError: name 'iq' is not defined
+2019-12-24 14:32:45,891 [Thread-2:140188144178944] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 28, in init_api
+    logger.error(iq)
+NameError: name 'iq' is not defined
+2019-12-24 14:33:06,040 [Thread-4:140610936882944] [django.request:228] [log:log_response] [ERROR]- Internal Server Error: /init_api
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python3.7/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/k8s_install/credit_k8s/views.py", line 29, in init_api
+    pk_version.update('%s:%s' % (i['id'],i['version']))
+ValueError: dictionary update sequence element #0 has length 1; 2 is required

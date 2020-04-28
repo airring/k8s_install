@@ -1,0 +1,35 @@
+[Unit]
+Description=Kubernetes Kubelet
+Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+
+[Service]
+WorkingDirectory=/var/lib/kubelet
+{% if KUBE_RESERVED_ENABLED == "yes" or SYS_RESERVED_ENABLED == "yes" %}
+ExecStartPre=/bin/mount -o remount,rw '/sys/fs/cgroup'
+ExecStartPre=/bin/mkdir -p /sys/fs/cgroup/cpuset/system.slice/kubelet.service
+ExecStartPre=/bin/mkdir -p /sys/fs/cgroup/hugetlb/system.slice/kubelet.service
+ExecStartPre=/bin/mkdir -p /sys/fs/cgroup/memory/system.slice/kubelet.service
+ExecStartPre=/bin/mkdir -p /sys/fs/cgroup/pids/system.slice/kubelet.service
+{% endif %}
+ExecStart={{ bin_dir }}/kubelet \
+  --config=/var/lib/kubelet/config.yaml \
+{% if KUBE_VER|float < 1.13 %}
+  --allow-privileged=true \
+{% endif %}
+  --cni-bin-dir={{ bin_dir }} \
+  --cni-conf-dir=/etc/cni/net.d \
+{% if CONTAINER_RUNTIME == "containerd" %}
+  --container-runtime=remote \
+  --container-runtime-endpoint=unix:///run/containerd/containerd.sock \
+{% endif %}
+  --hostname-override={{ inventory_hostname }} \
+  --kubeconfig=/etc/kubernetes/kubelet.kubeconfig \
+  --network-plugin=cni \
+  --pod-infra-container-image={{ SANDBOX_IMAGE }} \
+  --root-dir={{ KUBELET_ROOT_DIR }} \
+  --v=2
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

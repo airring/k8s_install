@@ -1,0 +1,234 @@
+2019-12-19 10:20:48,304 [Thread-1:140435104585472] [sourceDns.webdns.views:16] [views:init] [ERROR]- (('docker', 'https://storage.googleapis.com/kubernetes-release/release/v1.17.0/kubernetes-server-linux-amd64.tar.gz', 1),)
+2019-12-19 16:30:14,313 [MainThread:140626605889344] [sourceDns.webdns.views:17] [pymysql:__init__] [ERROR]- {'host': '192.168.3.105', 'port': 3306, 'user': 'root', 'passwd': 'rrjc2018', 'db': 'kubernetes'}
+2019-12-19 16:30:16,736 [Thread-1:140626322687744] [sourceDns.webdns.views:17] [pymysql:__init__] [ERROR]- {}
+2019-12-19 16:30:40,808 [MainThread:140425836410688] [sourceDns.webdns.views:17] [pymysql:__init__] [ERROR]- {'host': '192.168.3.105', 'port': 3306, 'user': 'root', 'passwd': 'rrjc2018', 'db': 'kubernetes'}
+2019-12-19 16:30:41,651 [Thread-1:140425486001920] [sourceDns.webdns.views:17] [views:init] [ERROR]- (('docker', 'https://storage.googleapis.com/kubernetes-release/release/v1.17.0/kubernetes-server-linux-amd64.tar.gz', 1),)
+2019-12-19 16:31:49,715 [MainThread:140460263061312] [sourceDns.webdns.views:21] [pymysql:__init__] [ERROR]- {'host': '192.168.3.105', 'port': 3306, 'user': 'root', 'passwd': 'rrjc2018', 'db': 'kubernetes'}
+2019-12-19 16:31:49,839 [django-main-thread:140460016695040] [sourceDns.webdns.views:21] [pymysql:__init__] [ERROR]- {'host': '192.168.3.105', 'port': 3306, 'user': 'root', 'passwd': 'rrjc2018', 'db': 'kubernetes'}
+2019-12-19 16:32:30,762 [Thread-1:140670857811712] [sourceDns.webdns.views:21] [pymysql:__init__] [ERROR]- {}
+2019-12-19 16:34:14,353 [Thread-1:139660235380480] [sourceDns.webdns.views:21] [pymysql:__init__] [ERROR]- {'host': '192.168.3.105', 'port': 3306, 'user': 'root', 'passwd': 'rrjc2018', 'db': 'kubernetes'}
+2019-12-19 16:34:27,534 [Thread-1:139660235380480] [sourceDns.webdns.views:21] [pymysql:__init__] [ERROR]- {'host': '192.168.3.105', 'port': 3306, 'user': 'root', 'passwd': 'rrjc2018', 'db': 'kubernetes'}
+2019-12-19 16:36:12,306 [Thread-1:140308023310080] [sourceDns.webdns.views:21] [pymysql:__init__] [ERROR]- {'host': '192.168.3.105', 'port': 3306, 'user': 'root', 'passwd': 'rrjc2018', 'db': 'kubernetes'}
+2019-12-19 16:37:39,546 [Thread-1:140489886418688] [sourceDns.webdns.views:21] [pymysql:__init__] [ERROR]- {'host': '192.168.3.105', 'port': 3306, 'user': 'root', 'passwd': 'rrjc2018', 'db': 'kubernetes'}
+2019-12-19 16:37:39,554 [Thread-1:140489886418688] [sourceDns.webdns.views:17] [views:init] [ERROR]- (('docker', 'https://storage.googleapis.com/kubernetes-release/release/v1.17.0/kubernetes-server-linux-amd64.tar.gz', 1),)
+2019-12-19 17:02:10,963 [Thread-3:140489886418688] [sourceDns.webdns.views:21] [pymysql:__init__] [ERROR]- {'host': '192.168.3.105', 'port': 3306, 'user': 'root', 'passwd': 'rrjc2018', 'db': 'kubernetes'}
+2019-12-19 17:02:10,970 [Thread-3:140489886418688] [sourceDns.webdns.views:17] [views:init] [ERROR]- (('docker', 'https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/static/stable/x86_64/docker-18.09.9.tgz', 1), ('kubeneter', 'https://storage.googleapis.com/kubernetes-release/release/v1.17.0/kubernetes-server-linux-amd64.tar.gz', 1))
+2019-12-19 17:05:52,036 [Thread-1:140169186322176] [sourceDns.webdns.views:21] [pymysql:__init__] [ERROR]- {'host': '192.168.3.105', 'port': 3306, 'user': 'root', 'passwd': 'rrjc2018', 'db': 'kubernetes'}
+2019-12-19 17:06:04,262 [Thread-1:140169186322176] [sourceDns.webdns.views:21] [pymysql:__init__] [ERROR]- {'host': '192.168.3.105', 'port': 3306, 'user': 'root', 'passwd': 'rrjc2018', 'db': 'kubernetes'}
+2019-12-19 17:06:25,294 [Thread-1:140218188838656] [sourceDns.webdns.views:20] [views:init] [ERROR]- [{'packet_name': 'docker', 'packet_url': 'https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/static/stable/x86_64/docker-18.09.9.tgz', 'install_id': 1}, {'packet_name': 'kubeneter', 'packet_url': 'https://storage.googleapis.com/kubernetes-release/release/v1.17.0/kubernetes-server-linux-amd64.tar.gz', 'install_id': 1}]
+2019-12-19 17:17:11,232 [Thread-3:140218188838656] [sourceDns.webdns.views:20] [views:init] [ERROR]- [{'packet_name': 'docker', 'packet_url': 'https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/static/stable/x86_64/docker-18.09.9.tgz', 'install_id': 1}, {'packet_name': 'kubeneter', 'packet_url': 'https://storage.googleapis.com/kubernetes-release/release/v1.17.0/kubernetes-server-linux-amd64.tar.gz', 'install_id': 1}]
+2019-12-19 17:34:16,592 [Thread-5:140218188838656] [sourceDns.webdns.views:20] [views:init] [ERROR]- [{'packet_name': 'docker', 'packet_url': 'https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/static/stable/x86_64/docker-18.09.9.tgz', 'version': '18.09.9', 'install_id': 1}, {'packet_name': 'etcd', 'packet_url': 'https://storage.googleapis.com/etcd/v3.3.18/etcd-v3.3.18-linux-amd64.tar.gz', 'version': 'v3.3.18', 'install_id': 1}, {'packet_name': 'kubeneter', 'packet_url': 'https://storage.googleapis.com/kubernetes-release/release/v1.17.0/kubernetes-server-linux-amd64.tar.gz', 'version': 'v1.17.0', 'install_id': 1}]
+2019-12-20 10:41:07,498 [Thread-7:140218188838656] [sourceDns.webdns.views:20] [views:init] [ERROR]- [{'packet_name': 'docker', 'packet_url': 'https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/static/stable/x86_64/docker-18.09.9.tgz', 'version': '18.09.9', 'install_id': 1}, {'packet_name': 'etcd', 'packet_url': 'https://storage.googleapis.com/etcd/v3.3.18/etcd-v3.3.18-linux-amd64.tar.gz', 'version': 'v3.3.18', 'install_id': 1}, {'packet_name': 'kubeneter', 'packet_url': 'https://storage.googleapis.com/kubernetes-release/release/v1.17.0/kubernetes-server-linux-amd64.tar.gz', 'version': 'v1.17.0', 'install_id': 1}]
+2019-12-20 10:44:00,748 [Thread-7:140218188838656] [sourceDns.webdns.views:20] [views:init] [ERROR]- [{'packet_name': 'docker', 'packet_url': 'https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/static/stable/x86_64/docker-18.09.9.tgz', 'version': '18.09.9', 'install_id': 1}, {'packet_name': 'etcd', 'packet_url': 'https://storage.googleapis.com/etcd/v3.3.18/etcd-v3.3.18-linux-amd64.tar.gz', 'version': 'v3.3.18', 'install_id': 1}, {'packet_name': 'kubeneter', 'packet_url': 'https://storage.googleapis.com/kubernetes-release/release/v1.17.0/kubernetes-server-linux-amd64.tar.gz', 'version': 'v1.17.0', 'install_id': 1}]
+2019-12-20 11:16:50,867 [Thread-13:140218172053248] [sourceDns.webdns.views:20] [views:init] [ERROR]- [{'packet_name': 'docker', 'packet_url': 'https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/static/stable/x86_64/docker-18.09.9.tgz', 'version': '18.09.9', 'install_id': 1}, {'packet_name': 'etcd', 'packet_url': 'https://storage.googleapis.com/etcd/v3.3.18/etcd-v3.3.18-linux-amd64.tar.gz', 'version': 'v3.3.18', 'install_id': 1}, {'packet_name': 'kubeneter', 'packet_url': 'https://storage.googleapis.com/kubernetes-release/release/v1.17.0/kubernetes-server-linux-amd64.tar.gz', 'version': 'v1.17.0', 'install_id': 1}]
+2019-12-20 11:17:47,641 [Thread-13:140218172053248] [sourceDns.webdns.views:20] [views:init] [ERROR]- [{'packet_name': 'docker', 'packet_url': 'https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/static/stable/x86_64/docker-18.09.9.tgz', 'version': '18.09.9', 'install_id': 1}, {'packet_name': 'etcd', 'packet_url': 'https://storage.googleapis.com/etcd/v3.3.18/etcd-v3.3.18-linux-amd64.tar.gz', 'version': 'v3.3.18', 'install_id': 1}, {'packet_name': 'kubeneter', 'packet_url': 'https://storage.googleapis.com/kubernetes-release/release/v1.17.0/kubernetes-server-linux-amd64.tar.gz', 'version': 'v1.17.0', 'install_id': 1}]
+2019-12-20 11:30:03,907 [Thread-1:139797033436928] [sourceDns.webdns.views:20] [views:init] [ERROR]- [{'packet_name': 'docker', 'packet_url': 'https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/static/stable/x86_64/docker-18.09.9.tgz', 'version': '18.09.9', 'install_id': 1}, {'packet_name': 'etcd', 'packet_url': 'https://storage.googleapis.com/etcd/v3.3.18/etcd-v3.3.18-linux-amd64.tar.gz', 'version': 'v3.3.18', 'install_id': 1}, {'packet_name': 'kubeneter', 'packet_url': 'https://storage.googleapis.com/kubernetes-release/release/v1.17.0/kubernetes-server-linux-amd64.tar.gz', 'version': 'v1.17.0', 'install_id': 1}]
+2019-12-20 11:31:29,859 [Thread-5:139796932445952] [sourceDns.webdns.views:20] [views:init] [ERROR]- [{'packet_name': 'docker', 'packet_url': 'https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/static/stable/x86_64/docker-18.09.9.tgz', 'version': '18.09.9', 'install_id': 1}, {'packet_name': 'etcd', 'packet_url': 'https://storage.googleapis.com/etcd/v3.3.18/etcd-v3.3.18-linux-amd64.tar.gz', 'version': 'v3.3.18', 'install_id': 1}, {'packet_name': 'kubeneter', 'packet_url': 'https://storage.googleapis.com/kubernetes-release/release/v1.17.0/kubernetes-server-linux-amd64.tar.gz', 'version': 'v1.17.0', 'install_id': 1}]
+2019-12-20 11:32:12,420 [Thread-1:139797033436928] [sourceDns.webdns.views:20] [views:init] [ERROR]- [{'packet_name': 'docker', 'packet_url': 'https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/static/stable/x86_64/docker-18.09.9.tgz', 'version': '18.09.9', 'install_id': 1}, {'packet_name': 'etcd', 'packet_url': 'https://storage.googleapis.com/etcd/v3.3.18/etcd-v3.3.18-linux-amd64.tar.gz', 'version': 'v3.3.18', 'install_id': 1}, {'packet_name': 'kubeneter', 'packet_url': 'https://storage.googleapis.com/kubernetes-release/release/v1.17.0/kubernetes-server-linux-amd64.tar.gz', 'version': 'v1.17.0', 'install_id': 1}]
+2019-12-20 11:33:27,361 [Thread-1:139922078058240] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': None}
+2019-12-20 11:34:09,651 [Thread-5:139921847219968] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': None}
+2019-12-20 11:35:49,313 [Thread-7:139921830434560] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': None}
+2019-12-20 11:37:24,569 [Thread-6:139921838827264] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': {}}
+2019-12-20 11:38:33,913 [Thread-1:139922078058240] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': {}}
+2019-12-20 11:41:28,569 [Thread-1:139922078058240] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '18.09.9'}
+2019-12-20 13:53:37,134 [Thread-9:139921847219968] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': {'0': {}, '1': {}, '2': {}}}
+2019-12-20 13:55:20,990 [Thread-10:139922069665536] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {}
+2019-12-20 13:58:26,408 [Thread-13:139921830434560] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': {'0': {}, '1': {}, '2': {}}}
+2019-12-20 13:58:51,247 [Thread-13:139921830434560] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': {}}
+2019-12-20 14:05:57,306 [Thread-17:139922078058240] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': {}}
+2019-12-20 14:08:22,717 [Thread-2:140363423545088] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': {}}
+2019-12-20 16:05:32,404 [Thread-11:140363415152384] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': {}}
+2019-12-20 16:06:12,338 [Thread-7:140363423545088] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {}
+2019-12-20 16:06:40,858 [Thread-12:140363389974272] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '111'}
+2019-12-20 16:06:55,066 [Thread-10:140363504551680] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '111'}
+2019-12-20 16:07:52,276 [Thread-7:140363423545088] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': 'v1.17.0'}
+2019-12-20 16:08:44,623 [Thread-7:140363423545088] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': 'v1.17.0'}
+2019-12-20 16:09:39,947 [Thread-9:140363398366976] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': {}}
+2019-12-20 16:12:31,733 [Thread-9:140363398366976] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {}
+2019-12-20 16:13:14,348 [Thread-11:140363415152384] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {}
+2019-12-20 16:16:54,453 [Thread-11:140363415152384] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': {'0': {}, '1': {}, '2': {}}}
+2019-12-20 16:17:45,673 [Thread-8:140363406759680] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '{"0":{},"1":{},"2":{}}'}
+2019-12-20 16:18:11,526 [Thread-9:140363398366976] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '0'}
+2019-12-20 16:23:12,351 [Thread-8:140363406759680] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '0'}
+2019-12-20 16:23:30,280 [Thread-9:140363398366976] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '{"0":{},"1":{},"2":{}}'}
+2019-12-20 16:24:47,097 [Thread-7:140363423545088] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '{"0":{},"1":{},"2":{}}'}
+2019-12-20 16:25:10,616 [Thread-8:140363406759680] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '{}'}
+2019-12-20 16:27:49,050 [Thread-10:140363504551680] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '{}'}
+2019-12-20 16:27:52,866 [Thread-9:140363398366976] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '{}'}
+2019-12-20 16:28:06,570 [Thread-12:140363389974272] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '{"0":{},"1":{},"2":{}}'}
+2019-12-20 16:35:14,341 [Thread-17:140363504551680] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '111'}
+2019-12-20 16:35:31,133 [Thread-14:140363398366976] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '111'}
+2019-12-20 16:36:04,643 [Thread-16:140363415152384] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '111'}
+2019-12-20 16:37:08,334 [Thread-17:140363504551680] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '111'}
+2019-12-20 16:37:39,654 [Thread-17:140363504551680] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '111'}
+2019-12-20 16:38:31,710 [Thread-15:140363423545088] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '111'}
+2019-12-20 16:38:43,494 [Thread-16:140363415152384] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '111'}
+2019-12-20 16:40:03,823 [Thread-16:140363415152384] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '111'}
+2019-12-20 16:40:12,005 [Thread-14:140363398366976] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': '111'}
+2019-12-20 16:47:04,848 [Thread-22:140363504551680] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- {'data': [{'id': 'docker', 'version': '18.09.9'}, {'id': 'etcd', 'version': 'v3.3.18'}, {'id': 'kubeneter', 'version': 'v1.17.0'}]}
+2019-12-20 16:47:34,048 [Thread-19:140363398366976] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- [{'id': 'docker', 'version': '18.09.9'}, {'id': 'etcd', 'version': 'v3.3.18'}, {'id': 'kubeneter', 'version': 'v1.17.0'}]
+2019-12-23 10:32:12,044 [Thread-3:140590742591232] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- [{'id': 'docker', 'version': '18.09.9'}, {'id': 'etcd', 'version': 'v3.3.18'}, {'id': 'kubeneter', 'version': 'v1.17.0'}]
+2019-12-23 10:36:37,138 [Thread-1:140371020818176] [sourceDns.webdns.views:26] [views:init_api] [ERROR]- [{'id': 'docker', 'version': '18.09.9'}, {'id': 'etcd', 'version': 'v3.3.18'}, {'id': 'kubeneter', 'version': 'v1.17.0'}]
+2019-12-24 14:30:18,137 [Thread-1:140459484288768] [sourceDns.webdns.views:28] [views:init_api] [ERROR]- {'id': 'docker', 'version': '18.09.9'}
+2019-12-24 14:33:06,009 [Thread-4:140610936882944] [sourceDns.webdns.views:28] [views:init_api] [ERROR]- {'id': 'docker', 'version': '18.09.9'}
+2019-12-24 14:36:23,965 [Thread-6:139656767207168] [sourceDns.webdns.views:31] [views:init_api] [ERROR]- dictionary update sequence element #0 has length 1; 2 is required
+2019-12-24 14:36:23,965 [Thread-6:139656767207168] [sourceDns.webdns.views:31] [views:init_api] [ERROR]- dictionary update sequence element #0 has length 1; 2 is required
+2019-12-24 14:36:23,965 [Thread-6:139656767207168] [sourceDns.webdns.views:31] [views:init_api] [ERROR]- dictionary update sequence element #0 has length 1; 2 is required
+2019-12-24 14:36:23,965 [Thread-6:139656767207168] [sourceDns.webdns.views:32] [views:init_api] [ERROR]- {}
+2019-12-24 14:36:50,659 [Thread-2:140445612386048] [sourceDns.webdns.views:29] [views:init_api] [ERROR]- docker:18.09.9
+2019-12-24 14:36:50,660 [Thread-2:140445612386048] [sourceDns.webdns.views:29] [views:init_api] [ERROR]- etcd:v3.3.18
+2019-12-24 14:36:50,660 [Thread-2:140445612386048] [sourceDns.webdns.views:29] [views:init_api] [ERROR]- kubeneter:v1.17.0
+2019-12-24 14:36:50,660 [Thread-2:140445612386048] [sourceDns.webdns.views:32] [views:init_api] [ERROR]- {}
+2019-12-24 14:40:08,932 [Thread-4:140712266426112] [sourceDns.webdns.views:29] [views:init_api] [ERROR]- docker:18.09.9
+2019-12-24 14:40:08,933 [Thread-4:140712266426112] [sourceDns.webdns.views:29] [views:init_api] [ERROR]- etcd:v3.3.18
+2019-12-24 14:40:08,933 [Thread-4:140712266426112] [sourceDns.webdns.views:29] [views:init_api] [ERROR]- kubeneter:v1.17.0
+2019-12-24 14:40:08,933 [Thread-4:140712266426112] [sourceDns.webdns.views:33] [views:init_api] [ERROR]- {'docker': '18.09.9', 'etcd': 'v3.3.18', 'kubeneter': 'v1.17.0'}
+2019-12-24 15:14:40,193 [Thread-5:140622018541312] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- docker:18.09.9
+2019-12-24 15:14:40,194 [Thread-5:140622018541312] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- etcd:v3.3.18
+2019-12-24 15:14:40,194 [Thread-5:140622018541312] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- kubeneter:v1.17.0
+2019-12-24 15:14:40,194 [Thread-5:140622018541312] [sourceDns.webdns.views:40] [views:init_api] [ERROR]- module 'urllib' has no attribute 'urlretrieve'
+2019-12-24 15:14:40,194 [Thread-5:140622018541312] [sourceDns.webdns.views:41] [views:init_api] [ERROR]- 下载完成
+2019-12-24 15:22:24,540 [Thread-2:139988397577984] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- docker:18.09.9
+2019-12-24 15:22:24,540 [Thread-2:139988397577984] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- etcd:v3.3.18
+2019-12-24 15:22:24,541 [Thread-2:139988397577984] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- kubeneter:v1.17.0
+2019-12-24 15:24:35,971 [Thread-2:139988397577984] [sourceDns.webdns.views:40] [views:init_api] [ERROR]- <urlopen error [Errno 101] Network is unreachable>
+2019-12-24 15:24:35,971 [Thread-2:139988397577984] [sourceDns.webdns.views:41] [views:init_api] [ERROR]- 下载完成
+2019-12-24 15:52:06,519 [Thread-1:140097068463872] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- docker:18.09.9
+2019-12-24 15:52:06,519 [Thread-1:140097068463872] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- etcd:v3.3.18
+2019-12-24 15:52:06,519 [Thread-1:140097068463872] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- kubeneter:v1.17.0
+2019-12-24 15:52:20,892 [Thread-1:140097068463872] [sourceDns.webdns.views:36] [views:init_api] [ERROR]- docker下载完成
+2019-12-24 15:53:00,901 [Thread-1:140097068463872] [sourceDns.webdns.views:38] [views:init_api] [ERROR]- etcd下载完成
+2019-12-24 15:55:21,618 [Thread-1:140097068463872] [sourceDns.webdns.views:40] [views:init_api] [ERROR]- k8s下载完成
+2019-12-24 15:55:38,947 [Thread-1:140097068463872] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2019-12-24 16:26:34,367 [Thread-9:140446726612736] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- docker:18.09.9
+2019-12-24 16:26:34,367 [Thread-9:140446726612736] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- etcd:v3.3.18
+2019-12-24 16:26:34,367 [Thread-9:140446726612736] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- kubeneter:v1.17.0
+2019-12-24 16:26:34,367 [Thread-9:140446726612736] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- 下载完成
+2019-12-24 16:27:45,990 [Thread-2:140674700543744] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- docker:18.09.9
+2019-12-24 16:27:45,990 [Thread-2:140674700543744] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- etcd:v3.3.18
+2019-12-24 16:27:45,990 [Thread-2:140674700543744] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- kubeneter:v1.17.0
+2019-12-24 16:27:45,990 [Thread-2:140674700543744] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- 下载完成
+2019-12-24 16:28:07,525 [Thread-1:140674708936448] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- docker:18.09.9
+2019-12-24 16:28:07,525 [Thread-1:140674708936448] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- etcd:v3.3.18
+2019-12-24 16:28:07,525 [Thread-1:140674708936448] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- kubeneter:v1.17.0
+2019-12-24 16:28:07,525 [Thread-1:140674708936448] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- 下载完成
+2019-12-24 16:29:00,117 [Thread-6:140674330519296] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- docker:18.09.9
+2019-12-24 16:29:00,117 [Thread-6:140674330519296] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- etcd:v3.3.18
+2019-12-24 16:29:00,117 [Thread-6:140674330519296] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- kubeneter:v1.17.0
+2019-12-24 16:29:00,117 [Thread-6:140674330519296] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- 下载完成
+2019-12-24 16:46:49,620 [Thread-12:140674683496192] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- docker:18.09.9
+2019-12-24 16:46:49,620 [Thread-12:140674683496192] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- etcd:v3.3.18
+2019-12-24 16:46:49,621 [Thread-12:140674683496192] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- kubeneter:v1.17.0
+2019-12-24 16:46:49,621 [Thread-12:140674683496192] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- 下载完成
+2019-12-24 16:48:56,141 [Thread-7:140674338912000] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- docker:18.09.9
+2019-12-24 16:48:56,141 [Thread-7:140674338912000] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- etcd:v3.3.18
+2019-12-24 16:48:56,141 [Thread-7:140674338912000] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- kubeneter:v1.17.0
+2019-12-24 16:48:56,141 [Thread-7:140674338912000] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- 下载完成
+2019-12-24 16:50:03,017 [Thread-7:140674338912000] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- docker:18.09.9
+2019-12-24 16:50:03,017 [Thread-7:140674338912000] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- etcd:v3.3.18
+2019-12-24 16:50:03,017 [Thread-7:140674338912000] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- kubeneter:v1.17.0
+2019-12-24 16:50:03,017 [Thread-7:140674338912000] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- 下载完成
+2019-12-24 16:53:21,423 [Thread-11:140674700543744] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- docker:18.09.9
+2019-12-24 16:53:21,423 [Thread-11:140674700543744] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- etcd:v3.3.18
+2019-12-24 16:53:21,423 [Thread-11:140674700543744] [sourceDns.webdns.views:30] [views:init_api] [ERROR]- kubeneter:v1.17.0
+2019-12-24 16:53:21,423 [Thread-11:140674700543744] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- 下载完成
+2019-12-25 17:14:35,345 [Thread-74:139666046093056] [sourceDns.webdns.views:33] [views:init_api] [ERROR]- string indices must be integers
+2019-12-25 17:14:35,345 [Thread-74:139666046093056] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- 下载完成
+2019-12-25 17:15:29,130 [Thread-77:139665801725696] [sourceDns.webdns.views:33] [views:init_api] [ERROR]- string indices must be integers
+2019-12-25 17:15:29,130 [Thread-77:139665801725696] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- 下载完成
+2019-12-25 17:16:16,545 [Thread-83:139666037700352] [sourceDns.webdns.views:33] [views:init_api] [ERROR]- string indices must be integers
+2019-12-25 17:16:16,546 [Thread-83:139666037700352] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- 下载完成
+2019-12-25 17:19:49,770 [Thread-81:139665810118400] [sourceDns.webdns.views:33] [views:init_api] [ERROR]- string indices must be integers
+2019-12-25 17:19:49,770 [Thread-81:139665810118400] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- 下载完成
+2019-12-25 17:22:29,310 [Thread-4:140327721629440] [sourceDns.webdns.views:33] [views:init_api] [ERROR]- string indices must be integers
+2019-12-25 17:22:29,310 [Thread-4:140327721629440] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- {}
+2019-12-25 17:22:29,311 [Thread-4:140327721629440] [sourceDns.webdns.views:46] [views:init_api] [ERROR]- 下载完成
+2019-12-25 17:23:05,428 [Thread-1:140327949911808] [sourceDns.webdns.views:33] [views:init_api] [ERROR]- string indices must be integers
+2019-12-25 17:23:05,428 [Thread-1:140327949911808] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- {}
+2019-12-25 17:23:05,429 [Thread-1:140327949911808] [sourceDns.webdns.views:46] [views:init_api] [ERROR]- 下载完成
+2019-12-25 17:23:35,763 [Thread-3:140697327224576] [sourceDns.webdns.views:27] [views:init_api] [ERROR]- {'pack': {'docker': '18.09.9', 'etcd': 'v3.3.18', 'kubeneter': 'v1.17.0'}}
+2019-12-25 17:23:35,764 [Thread-3:140697327224576] [sourceDns.webdns.views:34] [views:init_api] [ERROR]- string indices must be integers
+2019-12-25 17:23:35,764 [Thread-3:140697327224576] [sourceDns.webdns.views:46] [views:init_api] [ERROR]- {}
+2019-12-25 17:23:35,764 [Thread-3:140697327224576] [sourceDns.webdns.views:47] [views:init_api] [ERROR]- 下载完成
+2019-12-25 17:26:22,765 [Thread-3:140697327224576] [sourceDns.webdns.views:27] [views:init_api] [ERROR]- {'docker': '18.09.9', 'etcd': 'v3.3.18', 'kubeneter': 'v1.17.0'}
+2019-12-25 17:26:22,765 [Thread-3:140697327224576] [sourceDns.webdns.views:34] [views:init_api] [ERROR]- string indices must be integers
+2019-12-25 17:26:22,765 [Thread-3:140697327224576] [sourceDns.webdns.views:34] [views:init_api] [ERROR]- string indices must be integers
+2019-12-25 17:26:22,765 [Thread-3:140697327224576] [sourceDns.webdns.views:34] [views:init_api] [ERROR]- string indices must be integers
+2019-12-25 17:26:22,765 [Thread-3:140697327224576] [sourceDns.webdns.views:46] [views:init_api] [ERROR]- {}
+2019-12-25 17:26:22,765 [Thread-3:140697327224576] [sourceDns.webdns.views:47] [views:init_api] [ERROR]- 下载完成
+2019-12-25 17:36:36,568 [Thread-1:139631825217280] [sourceDns.webdns.views:39] [views:init_api] [ERROR]- {'docker': '18.09.9', 'etcd': 'v3.3.18', 'kubeneter': 'v1.17.0'}
+2019-12-25 17:36:36,569 [Thread-1:139631825217280] [sourceDns.webdns.views:40] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:29:57,425 [Thread-37:139631816824576] [sourceDns.webdns.views:39] [views:init_api] [ERROR]- {'docker': '18.09.9', 'etcd': 'v3.3.18', 'kubeneter': 'v1.17.0'}
+2020-01-07 16:29:57,426 [Thread-37:139631816824576] [sourceDns.webdns.views:40] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:33:09,427 [Thread-39:139631576205056] [sourceDns.webdns.views:39] [views:init_api] [ERROR]- docker
+2020-01-07 16:33:09,427 [Thread-39:139631576205056] [sourceDns.webdns.views:40] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:33:09,428 [Thread-45:139631567812352] [sourceDns.webdns.views:39] [views:init_api] [ERROR]- etcd
+2020-01-07 16:33:09,428 [Thread-45:139631567812352] [sourceDns.webdns.views:40] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:33:09,429 [Thread-42:139631601383168] [sourceDns.webdns.views:39] [views:init_api] [ERROR]- kubeneter
+2020-01-07 16:33:09,429 [Thread-42:139631601383168] [sourceDns.webdns.views:40] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:36:55,060 [Thread-49:139631576205056] [sourceDns.webdns.views:39] [views:init_api] [ERROR]- {'name': 'docker', 'version': '18.09.9'}
+2020-01-07 16:36:55,060 [Thread-49:139631576205056] [sourceDns.webdns.views:40] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:36:55,061 [Thread-42:139631601383168] [sourceDns.webdns.views:39] [views:init_api] [ERROR]- {'name': 'etcd', 'version': 'v3.3.18'}
+2020-01-07 16:36:55,061 [Thread-42:139631601383168] [sourceDns.webdns.views:40] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:36:55,062 [Thread-48:139631584597760] [sourceDns.webdns.views:39] [views:init_api] [ERROR]- {'name': 'kubeneter', 'version': 'v1.17.0'}
+2020-01-07 16:36:55,062 [Thread-48:139631584597760] [sourceDns.webdns.views:40] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:40:26,966 [Thread-5:140450388240128] [sourceDns.webdns.views:41] [views:init_api] [ERROR]- {'name': 'docker', 'version': '18.09.9'}
+2020-01-07 16:40:26,966 [Thread-5:140450388240128] [sourceDns.webdns.views:42] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:40:26,968 [Thread-3:140450613774080] [sourceDns.webdns.views:41] [views:init_api] [ERROR]- {'name': 'kubeneter', 'version': 'v1.17.0'}
+2020-01-07 16:40:26,968 [Thread-3:140450613774080] [sourceDns.webdns.views:42] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:40:26,969 [Thread-4:140450396632832] [sourceDns.webdns.views:41] [views:init_api] [ERROR]- {'name': 'etcd', 'version': 'v3.3.18'}
+2020-01-07 16:40:26,969 [Thread-4:140450396632832] [sourceDns.webdns.views:42] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:40:43,751 [Thread-3:140450613774080] [sourceDns.webdns.views:41] [views:init_api] [ERROR]- {'name': 'docker', 'version': '18.09.9'}
+2020-01-07 16:40:43,751 [Thread-3:140450613774080] [sourceDns.webdns.views:42] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:40:43,753 [Thread-4:140450396632832] [sourceDns.webdns.views:41] [views:init_api] [ERROR]- {'name': 'etcd', 'version': 'v3.3.18'}
+2020-01-07 16:40:43,753 [Thread-4:140450396632832] [sourceDns.webdns.views:42] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:40:43,755 [Thread-8:140450630821632] [sourceDns.webdns.views:41] [views:init_api] [ERROR]- {'name': 'kubeneter', 'version': 'v1.17.0'}
+2020-01-07 16:40:43,755 [Thread-8:140450630821632] [sourceDns.webdns.views:42] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:48:36,258 [Thread-2:139660870878976] [sourceDns.webdns.views:41] [views:init_api] [ERROR]- {'name': 'docker', 'version': '18.09.9'}
+2020-01-07 16:48:36,260 [Thread-2:139660870878976] [sourceDns.webdns.views:43] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:48:36,261 [Thread-1:139660879271680] [sourceDns.webdns.views:41] [views:init_api] [ERROR]- {'name': 'etcd', 'version': 'v3.3.18'}
+2020-01-07 16:48:36,262 [Thread-1:139660879271680] [sourceDns.webdns.views:43] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:48:36,263 [Thread-6:139660634343168] [sourceDns.webdns.views:41] [views:init_api] [ERROR]- {'name': 'kubeneter', 'version': 'v1.17.0'}
+2020-01-07 16:48:36,264 [Thread-6:139660634343168] [sourceDns.webdns.views:43] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:49:02,417 [Thread-6:140436188133120] [sourceDns.webdns.views:41] [views:init_api] [ERROR]- {'name': 'docker', 'version': '18.09.9'}
+2020-01-07 16:49:02,417 [Thread-6:140436188133120] [sourceDns.webdns.views:42] [views:init_api] [ERROR]- 18.09.9
+2020-01-07 16:49:02,417 [Thread-6:140436188133120] [sourceDns.webdns.views:43] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:49:02,418 [Thread-1:140436230096640] [sourceDns.webdns.views:41] [views:init_api] [ERROR]- {'name': 'etcd', 'version': 'v3.3.18'}
+2020-01-07 16:49:02,419 [Thread-1:140436230096640] [sourceDns.webdns.views:42] [views:init_api] [ERROR]- v3.3.18
+2020-01-07 16:49:02,419 [Thread-1:140436230096640] [sourceDns.webdns.views:43] [views:init_api] [ERROR]- 下载完成
+2020-01-07 16:49:02,419 [Thread-2:140436221703936] [sourceDns.webdns.views:41] [views:init_api] [ERROR]- {'name': 'kubeneter', 'version': 'v1.17.0'}
+2020-01-07 16:49:02,420 [Thread-2:140436221703936] [sourceDns.webdns.views:42] [views:init_api] [ERROR]- v1.17.0
+2020-01-07 16:49:02,420 [Thread-2:140436221703936] [sourceDns.webdns.views:43] [views:init_api] [ERROR]- 下载完成
+2020-01-07 17:20:06,930 [Thread-4:139838918485760] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-07 17:20:06,931 [Thread-2:139838935533312] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-07 17:20:06,932 [Thread-6:139838565119744] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-07 17:21:03,490 [Thread-2:139838935533312] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-07 17:21:03,491 [Thread-4:139838918485760] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-07 17:21:03,491 [Thread-6:139838565119744] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-07 17:25:42,935 [Thread-2:139838935533312] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-07 17:25:42,936 [Thread-10:139838926878464] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-07 17:25:42,936 [Thread-5:139838910093056] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-07 17:27:11,165 [Thread-13:139838918485760] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-07 17:27:11,166 [Thread-14:139838910093056] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-07 17:27:11,166 [Thread-16:139838935533312] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-09 09:25:33,192 [Thread-26:139838565119744] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-09 09:25:33,193 [Thread-30:139838943926016] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-09 09:25:33,193 [Thread-28:139838910093056] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-09 09:27:27,096 [Thread-1:140640729712384] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-09 09:27:27,097 [Thread-2:140640650262272] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-09 09:27:27,098 [Thread-5:140640625084160] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-09 09:29:54,322 [Thread-5:139816304486144] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-09 09:29:54,323 [Thread-6:139816296093440] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-09 09:29:54,323 [Thread-3:139816321271552] [sourceDns.webdns.views:44] [views:init_api] [ERROR]- 下载完成
+2020-01-09 10:11:35,467 [Thread-3:140619534423808] [sourceDns.webdns.views:37] [views:init_api] [ERROR]- getattr expected at least 2 arguments, got 1
+2020-01-09 10:11:35,468 [Thread-4:140619526031104] [sourceDns.webdns.views:37] [views:init_api] [ERROR]- getattr expected at least 2 arguments, got 1
+2020-01-09 10:11:35,469 [Thread-6:140619301250816] [sourceDns.webdns.views:37] [views:init_api] [ERROR]- getattr expected at least 2 arguments, got 1
+2020-01-09 10:11:40,472 [Thread-3:140619534423808] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- docker文件下载完成
+2020-01-09 10:11:40,473 [Thread-4:140619526031104] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- etcd文件下载完成
+2020-01-09 10:11:40,474 [Thread-6:140619301250816] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- kubeneter文件下载完成
+2020-01-09 11:08:44,830 [Thread-6:140143056615168] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- etcd文件下载完成
+2020-01-09 11:08:53,768 [Thread-3:140143081793280] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- kubeneter文件下载完成
+2020-01-09 11:09:18,561 [Thread-5:140143065007872] [sourceDns.webdns.views:45] [views:init_api] [ERROR]- docker文件下载完成
+2020-01-09 14:42:21,979 [Thread-1:140442947548928] [sourceDns.webdns.views:43] [views:init_api] [ERROR]- docker文件下载完成
+2020-01-09 14:42:49,569 [Thread-6:140442905585408] [sourceDns.webdns.views:43] [views:init_api] [ERROR]- etcd文件下载完成
+2020-01-09 14:43:56,358 [Thread-8:140442930763520] [sourceDns.webdns.views:43] [views:init_api] [ERROR]- kubeneter文件下载完成

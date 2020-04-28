@@ -1,0 +1,84 @@
+{% extends 'default.html' %}
+{% load static %}
+{% block init %}active{% endblock %}
+
+{% block head %}
+{% endblock %}
+{% block re_content %}
+    <div class="main-content">
+
+        <div class="container">
+            <div class="row">
+    <div class="col-md-12">
+     <div class="card">
+                    <div class="card-body">
+                            <div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th scope="col">packet</th>
+
+            <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in packet %}
+        <tr>
+
+            <td name="packet">{{ i }}</td>
+            <td>
+                <div id="jd{{ i }}">
+                <span class="badge badge-warning">Pending</span>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<button type="button" id="install" class="btn btn-success">安装</button>
+                            </div>
+                    </div>
+     </div>
+    </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+$(function (){
+    $("#install").click(async function(){
+        var els =document.getElementsByName("packet");
+        console.log('=======')
+        console.log(els)
+
+        for (var i = 0, j = els.length; i < j; i++){
+            console.log(els[i].innerText)
+            $("#jd"+els[i].innerText).html('<div class="spinner-border text-success" role="status">\n' +
+                '  <span class="sr-only">Loading...</span>\n' +
+                '</div>');
+            {#pack[els[i].id]=els[i].value#}
+            var html = await $.ajax({
+            type: "POST",
+            url: "{% url 'install_packet' %}",
+            data: JSON.stringify({'name':els[i].innerText}),
+            dataType: 'JSON',
+
+            success: function (data) {
+                if (data.status == 1){
+                $("#jd"+data.name).html('<span class="badge badge-info">已完成</span>');
+                }
+                else {
+                $("#jd"+data.name).html('<span class="badge badge-danger">未完成</span>');
+                }
+            }
+        })
+
+
+        }
+    })
+})
+    </script>
+{% endblock %}

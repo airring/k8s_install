@@ -1,0 +1,45 @@
+#初始化系统
+---
+- name: close firewalld
+  service: name=firewalld enabled=no state=stopped
+
+- name: selinux
+  lineinfile:
+    dest: /etc/selinux/config
+    regexp: '^SELINUX='
+    line: SELINUX=disabled
+
+- name: init yum
+  get_url:
+    url: http://mirrors.aliyun.com/repo/Centos-7.repo
+    dest: /etc/yum.repos.d/CentOS-Base.repo
+
+- name: init repo
+  get_url:
+    url: http://mirrors.aliyun.com/repo/epel-7.repo
+    dest: /etc/yum.repos.d/epel.repo
+
+#- name: yum package
+#  package:
+#    name: "{{ item }}"
+#    state: present
+#  with_items:
+#    - vim
+
+- name: change hostname
+  hostname: 'name={{ host_name }}'
+
+- name: add etchost
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ ansible_all_ipv4_addresses[0] }} {{ host_name }}"
+
+- name: off swap
+  shell: swapoff -a
+
+- name: change fstab
+  lineinfile:
+    dest: /etc/fstab
+    regexp: '^/dev/mapper/centos-swap'
+    state: absent
+
