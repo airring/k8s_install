@@ -1,0 +1,189 @@
+{% extends 'default.html' %}
+{% load static %}
+{% block manage %}open{% endblock %}
+
+{% block update %}active{% endblock %}
+
+{% block head %}
+{% endblock %}
+{% block re_content %}
+        <div class="main-content">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                        <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title">请选择下载地址</h6>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <select id="selct_pt"  class="custom-select custom-select-lg">
+                                            <option selected>选择需要更新的软件</option>
+                                            {% for i in packet %}
+                                            <option value="{{ i.packet_name }}">{{ i.packet_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                        <div class="form-group">
+                                            <label for="validationCustom01">选择应用下载的url</label>
+                                            <input type="text" class="form-control" id="inputurl" name="packet" placeholder="url"  required>
+                                            
+                                        </div>
+
+                                        
+                                        <button type="submit" id="tijiao" class="btn btn-primary">开始下载</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                <div class="card">
+                    <div class="card-body">
+                            <div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th scope="col">packet</th>
+
+            <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr id="changess">
+
+            <td></td>
+            <td>
+                <span class="badge badge-warning">Pending</span>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" >
+        <label class="form-check-label"  for="exampleCheck1" >自己下载安装包</label>
+    </div>
+    <button type="button" id="install" class="btn btn-success">开始升级</button>
+</div>
+                        </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        </div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+$(function (){
+    $("#tijiao").click(function(){
+        var url =document.getElementById("inputurl").value;
+        pack=$('#selct_pt option:selected').val();
+        if ( pack == '选择需要更新的软件' ) {
+            swal("error!", "请选择需要更新的软件!", "error");
+            return;
+        }
+        if ( url == '' ){
+            swal("error!", "请输入url!", "error");
+            return;
+        }
+        console.log(pack)
+        $("#changess").html('<td>'+pack+'</td>\n' +
+            '<td><div class="spinner-border text-success" role="status">\n' +
+            '  <span class="sr-only">Loading...</span>\n' +
+            '</div></td>');
+        
+        var html = $.ajax({
+        type: "POST",
+        url: "{% url 'init_api' %}",
+        data: JSON.stringify({'name':pack,'version':document.getElementById("inputurl").value}),
+        dataType: 'JSON',
+        success: function (data) {
+            console.log(data)
+            if (data.status == 1){
+            $("#changess").html('<td>'+pack+'</td>\n' +
+            '<td><span class="badge badge-info">下载完成</span></td>');
+            }
+            else {
+            $("#changess").html('<td>'+pack+'</td>\n' +
+            '<td><span class="badge badge-danger">未完成</span></td>');
+            }
+        }
+        })
+
+
+        
+    })
+})
+</script>
+<script>
+$(function (){
+    $("#install").click(function(){
+        var els =document.getElementsByClassName('badge badge-info').length;
+        var pack_name=$('#selct_pt option:selected').val();
+        $("#changess").html('<td>'+pack_name+'</td>\n' +
+            '<td><div class="spinner-border text-success" role="status">\n' +
+            '  <span class="sr-only">Loading...</span>\n' +
+            '</div></td>');
+        console.log(els);
+        if ( els == 3 ){
+            swal("Good job!", "You clicked the button!", "success")
+            .then((willDelete) => {
+                var html = $.ajax({
+                type: "POST",
+                url: "{% url 'update_api' %}",
+                data: JSON.stringify({'name':pack_name,'version':document.getElementById("inputurl").value}),
+                dataType: 'JSON',
+                success: function (data) {
+                    console.log(data)
+                    if (data.status == 1){
+                    $("#changess").html('<td>'+pack_name+'</td>\n' +
+                    '<td><span class="badge badge-info">更新完成</span></td>');
+                    }
+                    else {
+                    $("#changess").html('<td>'+pack_name+'</td>\n' +
+                    '<td><span class="badge badge-danger">更新失败</span></td>');
+                    }
+                }
+                })
+            });
+        }
+        else if ( exampleCheck1.checked == true ){
+            swal("warning!", "请确认文件拷贝到/opt目录且按照要求命名!", "warning")
+            .then((willDelete) => {
+                var html = $.ajax({
+                type: "POST",
+                url: "{% url 'update_api' %}",
+                data: JSON.stringify({'name':pack_name,'version':document.getElementById("inputurl").value}),
+                dataType: 'JSON',
+                success: function (data) {
+                    console.log(data)
+                    if (data.status == 1){
+                    $("#changess").html('<td>'+pack_name+'</td>\n' +
+                    '<td><span class="badge badge-info">更新完成</span></td>');
+                    }
+                    else {
+                    $("#changess").html('<td>'+pack_name+'</td>\n' +
+                    '<td><span class="badge badge-danger">更新失败</span></td>');
+                    }
+                }
+                })
+            });
+        }
+        else {
+            swal("error!", "你还有服务没有下载完成!", "error");
+        }
+    })
+})
+</script>
+
+
+{% endblock %}

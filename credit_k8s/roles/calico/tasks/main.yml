@@ -1,0 +1,26 @@
+- name: 在节点创建相关目录
+  file: name={{ item }} state=directory
+  with_items:
+  - /etc/calico/ssl
+  - /etc/cni/net.d
+  - /opt/kube/images 
+  - /opt/kube/kube-system
+
+- name: get calico-etcd-secrets info
+  shell: "{{ bin_dir }}/kubectl get secrets -n kube-system"
+  register: secrets_info
+  run_once: true
+
+- name: 创建 calico-etcd-secrets
+  shell: "cd /etc/calico/ssl && \
+        {{ bin_dir }}/kubectl create secret generic -n kube-system calico-etcd-secrets \
+        --from-file=etcd-ca={{ ca_dir }}/ca.pem \
+        --from-file=etcd-key={{ ca_dir }}/etcd-key.pem \
+        --from-file=etcd-cert={{ ca_dir }}/etcd.pem"
+  when: '"calico-etcd-secrets" not in secrets_info.stdout'
+  run_once: true
+
+- name: 配置 calico DaemonSet yaml文件
+  template: src=calico.yaml dest=/opt/kube/kube-system/calico.yaml
+
+  

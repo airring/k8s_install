@@ -1,0 +1,42 @@
+---
+- name: kubeadm reset
+  shell: kubeadm reset -f
+  ignore_errors: yes
+
+- name: 同步证书
+  copy: src={{ item }} dest=/etc/kubernetes/pki/
+  with_fileglob:
+    - "{{ pki_dir }}/*"
+
+- name: copy kubernetes repo
+  template:
+    src: kubernetes.repo
+    dest: /etc/yum.repos.d/kubernetes.repo
+
+- name: install kube
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - kubeadm
+    - kubelet
+    - kubectl
+
+# - name: copy kubeadm config
+#   template:
+#     src: kubeadm.conf
+#     dest: /tmp/kubeadm.conf
+
+# - name: change ip
+#   lineinfile:
+#     dest: /tmp/kubeadm.conf
+#     regexp: '  advertiseAddress: 0.0.0.0'
+#     line: '  advertiseAddress: {{ ansible_all_ipv4_addresses[0] }}'
+
+- name: copy join file
+  copy:
+    src: /tmp/joinmaster.sh
+    dest: /tmp/joinmaster.sh
+
+- name: join kube
+  shell: sh /tmp/joinmaster.sh

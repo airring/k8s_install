@@ -69,16 +69,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'k8s.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'kubernetes',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'kubernetes',
+#         'USER': 'root',
+#         'PASSWORD': 'rrjc2018',
+#         'HOST': '192.168.3.105',
+#         'PORT': '3306',
+#     }
+# }
 
 # TODO log配置
 LOGGING = {

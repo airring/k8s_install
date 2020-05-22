@@ -15,14 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import include, url
+from django.conf.urls import url
 from credit_k8s import views as iviews
+from manage_k8s import views as mviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^index$',iviews.index,name='index'),
-    url(r'^init$',iviews.init,name='init'),
-    url(r'^init_2$',iviews.init_2,name='init_2'),
-    url(r'^init_api$',iviews.init_api,name='init_api'),
-    url(r'^install_packet$',iviews.install_packet,name='install_packet')
+    url(r'^index$', iviews.index, name='index'),
+    url(r'^init$', iviews.init, name='init'),
+    url(r'^init_2$', iviews.init_2, name='init_2'),
+    url(r'^init_api$', iviews.init_api, name='init_api'),
+    url(r'^install_packet$', iviews.install_packet, name='install_packet'),
+    url(r'^update$', mviews.update, name='update'),
+    url(r'^update_api$', mviews.update_api, name='update_api')
 ]

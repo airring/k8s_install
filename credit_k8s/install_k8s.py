@@ -36,52 +36,71 @@ def etcd():
 
 def docker():
     try:
-        os.chdir('/opt')
-        os.system('tar zxvf ./docker.tgz --strip-components=1 -C /opt/kube/bin')
-        logger.error('docker文件解压完成')
+        extra_vars = {}
+        extra_vars['hostname'] = 'docker'
+        playbook_action(filedir + '/initsys.yml', extra_vars)
+        logger.error('docker初始化完成')
+
+        extra_vars = {}
+        extra_vars['hostname'] = 'docker'
+        a = playbook_action(filedir + '/docker.yml', extra_vars)
+        logger.error(a['failed'])
+        if not a['failed']:
+            logger.error('docker安装完成')
+        else:
+            logger.error('docker安装失败')
+            logger.error(a['failed'])
+            return "1"
     except Exception as e:
         logger.error(e)
-
-    extra_vars = {}
-    extra_vars['hostname'] = 'docker'
-    playbook_action(filedir + '/initsys.yml', extra_vars)
-    logger.error('docker初始化完成')
-
-    extra_vars = {}
-    extra_vars['hostname'] = 'docker'
-    playbook_action(filedir + '/docker.yml', extra_vars)
-    logger.error('docker安装完成')
-
-
-def kube_init():
-    try:
-        os.chdir('/opt')
-        os.system('tar zxvf ./kubernet.tar.gz ')
-        os.system('find ./kubernetes -name kube-apiserver -exec cp {} /opt/kube/bin \\;')
-        os.system('find ./kubernetes -name kube-controller-manager -exec cp {} /opt/kube/bin \\;')
-        os.system('find ./kubernetes -name kube-scheduler -exec cp {} /opt/kube/bin \\;')
-        os.system('find ./kubernetes -name kubectl -exec cp {} /opt/kube/bin \\;')
-        os.system('find ./kubernetes -name kubelet -exec cp {} /opt/kube/bin \\;')
-        os.system('find ./kubernetes -name kube-proxy -exec cp {} /opt/kube/bin \\;')
-        logger.error('k8s文件解压完成')
-    except Exception as e:
-        logger.error(e)
+        return "1"
 
 
 def kube_master():
-    extra_vars = {}
-    extra_vars['hostname'] = 'kube-master'
-    extra_vars['base_dir'] = filedir
-    playbook_action(filedir + '/kube-master.yml', extra_vars)
-    logger.error('kube-master安装完成')
+    try:
+        extra_vars = {}
+        extra_vars['hostname'] = 'kube-master'
+        extra_vars['base_dir'] = filedir
+        a = playbook_action(filedir + '/kube-master.yml', extra_vars)
+        if not a['failed']:
+            logger.error('kube-master安装完成')
+        else:
+            logger.error('kube-master安装失败')
+            logger.error(a['failed'])
+            return "1"
+    except Exception as e:
+        logger.error(e)
+        return "1"
+
+
+def kube_master_join():
+    try:
+        extra_vars = {}
+        extra_vars['hostname'] = 'kube-master'
+        extra_vars['base_dir'] = filedir
+        a = playbook_action(filedir + '/kube-masterjoin.yml', extra_vars)
+        if not a['failed']:
+            logger.error('kube-master节点添加完成')
+        else:
+            logger.error('kube-master节点添加失败')
+            logger.error(a['failed'])
+            return "1"
+    except Exception as e:
+        logger.error(e)
+        return "1"        
 
 
 def kube_node():
     extra_vars = {}
     extra_vars['hostname'] = 'kube-node'
     extra_vars['base_dir'] = filedir
-    playbook_action(filedir + '/kube-node.yml', extra_vars)
-    logger.error('kube-node安装完成')
+    a = playbook_action(filedir + '/kube-node.yml', extra_vars)
+    if not a['failed']:
+        logger.error('kube-node安装完成')
+    else:
+        logger.error('kube-node安装失败')
+        logger.error(a['failed'])
+        return "1"
 
 
 def kubeneter():

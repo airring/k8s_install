@@ -9,6 +9,9 @@
     regexp: '^SELINUX='
     line: SELINUX=disabled
 
+- name: selinux
+  shell: setenforce 0    
+
 - name: init yum
   get_url:
     url: http://mirrors.aliyun.com/repo/Centos-7.repo

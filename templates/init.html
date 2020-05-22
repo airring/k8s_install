@@ -12,20 +12,17 @@
                 <div class="col-md-12">
                         <div class="card">
                         <div class="card-body">
-                            <h6 class="card-title">请选择安装版本</h6>
+                            <h6 class="card-title">请选择下载地址</h6>
                             <div class="row">
                                 <div class="col-md-8">
 
                                         {% for i in packet %}
                                         <div class="form-group">
                                             <label for="validationCustom01">{{ i.packet_name }}</label>
-                                            <input type="text" class="form-control" id={{ i.packet_name }} name="packet" placeholder="First name" value={{ i.version }} required>
+                                            <input type="text" class="form-control" id={{ i.packet_name }} name="packet" placeholder="First name" value={{ i.packet_url }} required>
                                         </div>
                                         {% endfor %}
-                                        <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                        </div>
+                                        
                                         <button type="submit" id="tijiao" class="btn btn-primary">开始下载</button>
 
                                 </div>
@@ -41,7 +38,7 @@
         <tr>
 
             <th scope="col">packet</th>
-            <th scope="col">version</th>
+
             <th scope="col">Status</th>
         </tr>
         </thead>
@@ -50,7 +47,7 @@
         <tr>
 
             <td>{{ i.packet_name }}</td>
-            <td>{{ i.version }}</td>
+
             <td>
                 <div id="jd{{ i.packet_name }}">
                 <span class="badge badge-warning">Pending</span>
@@ -60,7 +57,11 @@
         {% endfor %}
         </tbody>
     </table>
-    <button type="button" id="install" class="btn btn-success">安装</button>
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label"  for="exampleCheck1">自己下载安装包</label>
+    </div>
+    <button type="button" id="install" class="btn btn-success">跳转安装页面</button>
 </div>
                         </div>
                 </div>
@@ -85,7 +86,7 @@ $(function (){
             $("#jd"+els[i].id).html('<div class="spinner-border text-success" role="status">\n' +
                 '  <span class="sr-only">Loading...</span>\n' +
                 '</div>');
-            {#pack[els[i].id]=els[i].value#}
+            
             var html = $.ajax({
             type: "POST",
             url: "{% url 'init_api' %}",
@@ -116,7 +117,12 @@ $(function (){
             .then((willDelete) => {
                 window.location.href='init_2'
             });
-
+        }
+        else if ( exampleCheck1.checked == true ){
+            swal("Good job!", "You clicked the button!", "success")
+            .then((willDelete) => {
+                window.location.href='init_2'
+            });
         }
         else {
             swal("error!", "你还有服务没有下载完成!", "error");

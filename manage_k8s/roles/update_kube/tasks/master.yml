@@ -1,0 +1,11 @@
+- name: 同步二进制文件
+  copy: src={{ bin_dir }}/{{ item }} dest={{ bin_dir }}/{{ item }} mode=0755 force=yes
+  with_items:
+  - kube-apiserver
+  - kube-controller-manager
+  - kube-scheduler
+  - kubectl
+
+- name: 重启kubelet等服务
+  shell: "systemctl daemon-reload && systemctl restart kube-apiserver && \
+	systemctl restart kube-controller-manager && systemctl restart kube-scheduler"

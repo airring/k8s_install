@@ -10,8 +10,11 @@
   file: path=/opt/cfssljson mode=0755
   
 - name: 创建ssl目录
-  file: path={{ ca_dir }} state=directory
+  file: path={{ item }} state=directory
   ignore_errors: true
+  with_items:
+  - "{{ pki_dir }}"
+  - "{{ ca_dir }}"
 
 - name: 生成ca证书
   shell: /opt/cfssl gencert -initca {{ ca_dir }}/ca-csr.json | /opt/cfssljson -bare {{ ca_dir }}/ca

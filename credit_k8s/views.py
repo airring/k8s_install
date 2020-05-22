@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 import json
-from script.pymysql import ConnectionPool
+# from script.pymysql import ConnectionPool
 from credit_k8s import downfile, install_k8s
 import logging
 logger = logging.getLogger('sourceDns.webdns.views')
@@ -16,16 +16,31 @@ def index(request, template='index.html'):
 
 
 def init(request, template='init.html'):
-    pool = ConnectionPool()
-    packet_install = pool.execute("select * from packet_install")
+    packet = [
+        {'packet_name': 'cni_plugins',
+         'packet_url': 'https://github.com/containernetworking/plugins/releases/download/v0.8.5/cni-plugins-linux-amd64-v0.8.5.tgz',
+         'version': '0'},
+        {'packet_name': 'cfssl',
+         'packet_url': 'https://pkg.cfssl.org/R1.2/cfssl_linux-amd64',
+         'version': '1.2.0'},
+        {'packet_name': 'cfssljson',
+         'packet_url': 'https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64',
+         'version': '1.2.0'},
+        {'packet_name': 'crictl',
+         'packet_url': 'https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.18.0/crictl-v1.18.0-linux-amd64.tar.gz',
+         'version': '1.18.0'
+         }]
+    # pool = ConnectionPool()
+    # packet_install = pool.execute("select * from packet_install")
+
     context = {
-        'packet': packet_install
+        'packet': packet
     }
     return render(request, template, context)
 
 
 def init_2(request, template='init_2.html'):
-    packet_install = ['ca', 'etcd', 'docker', 'kube_init', 'kube_master', 'kube_node']
+    packet_install = ['ca', 'etcd', 'docker', 'kube_master', 'kube_master_join', 'kube_node']
     logger.error(packet_install)
     context = {
         'packet': packet_install
@@ -45,14 +60,15 @@ def init_api(request):
             'status': 1,
             'name': name
         }
+        logger.error('%s文件下载完成' % name)
     except Exception as e:
         logger.error(e)
         context = {
             'status': 2,
             'name': name
         }
+        logger.error('%s文件下载失败' % name)
 
-    logger.error('%s文件下载完成' % name)
     return JsonResponse(context)
 
 
@@ -62,17 +78,16 @@ def install_packet(request):
     pk_version = json.loads(request.body)
     name = pk_version['name']
     logger.error(name)
-    try:
-        getattr(install_k8s, name)()
+    a = getattr(install_k8s, name)()
+    if a == "1":
         context = {
-            'status': 1,
-            'name': name
+         'msg': '发布失败',
+         'status': 2,
+         'name': name
         }
-    except Exception as e:
-        logger.error(e)
+    else:
         context = {
-            'status': 2,
-            'name': name
+         'status': 1,
+         'name': name
         }
-
     return JsonResponse(context)

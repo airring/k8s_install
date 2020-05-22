@@ -92,19 +92,20 @@
             <li class="navigation-divider">Main</li>
 
             <li>
-                <a href="init">
-                    <i class={% block init %}{% endblock %} data-feather="message-circle"></i>
-                    <span>初始化</span>
+                <a class="{% block init %}{% endblock %}" href="init">
+                    <i  data-feather="message-circle"></i>
+                    <span >初始化</span>
                     <span class="badge badge-danger">2</span>
                 </a>
             </li>
             <li >
-                <!-- <li class="open"> -->
+                <li class="{% block manage %}{% endblock %}">
                 <a href="default.html">
-                    <i class="nav-link-icon" data-feather="bar-chart-2"></i>
+                    <i class="nav-link-icon"  data-feather="bar-chart-2"></i>
                     <span>集群管理</span>
                 </a>
                 <ul>
+                    <li><a class="{% block update %}{% endblock %}" href="update">升级</a></li>
                     <li><a href="#">添加etcd</a></li>
                     <li><a href="#">添加kube-master</a></li>
                     <li><a href="#">添加kube-node</a></li>

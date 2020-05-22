@@ -1,0 +1,5 @@
+- hosts:
+  - kubeneter-node
+  - kubeneter-master
+  roles:
+  - update_kube

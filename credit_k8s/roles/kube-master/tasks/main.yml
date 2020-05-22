@@ -1,123 +1,80 @@
-- name: 下载 kube-master 二进制
-  copy: src={{ bin_dir }}/{{ item }} dest={{ bin_dir }}/{{ item }} mode=0755
-  with_items:
-  - kube-apiserver
-  - kube-controller-manager
-  - kube-scheduler
-  - kubectl
-  tags: upgrade_k8s
+---
+- name: kubeadm reset
+  shell: kubeadm reset -f
+  ignore_errors: yes
 
-- name: 分发证书相关
-  copy: src=/{{ ca_dir }}/{{ item }} dest={{ ca_dir }}/{{ item }}
-  with_items:
-  - ca.pem
-  - ca-key.pem
-  - ca-config.json
+- name: 分发ca证书
+  copy: src={{ ca_dir }}/ca.pem dest=/etc/kubernetes/pki/ca.crt
 
-- name: 同步证书生成文件
-  copy: src=/opt/{{ item }} dest={{ bin_dir }}/{{ item }} mode=0755
-  with_items:
-  - cfssl
-  - cfssljson
+- name: 分发ca.key证书
+  copy: src={{ ca_dir }}/ca-key.pem dest=/etc/kubernetes/pki/ca.key
 
-- name: 同步证书json文件
-  template: src={{ item }} dest={{ ca_dir }}/{{ item | basename | regex_replace('\.j2$', '') }}
+
+- name: copy kubernetes repo
+  template:
+    src: kubernetes.repo
+    dest: /etc/yum.repos.d/kubernetes.repo
+
+- name: install kube
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - kubeadm
+    - kubelet
+    - kubectl
+
+- name: copy kubeadm config
+  template:
+    src: kubeadm.conf
+    dest: /tmp/kubeadm.conf
+
+- name: delete kubeconfig
+  shell: rm $HOME/.kube -fr  
+
+- name: kubeadm init
+  shell: kubeadm init --config /tmp/kubeadm.conf > /tmp/kubeinstall.txt
+
+- name: shell credit
+  shell: tail -n 2 /tmp/kubeinstall.txt > /tmp/join.sh
+
+- name: add master
+  shell: cat /tmp/kubeinstall.txt |sed -n '/and then running the following as root/,/Then you can join any number/{/and service account/n;/Then you can join/b;p}' > /tmp/joinmaster.sh
+
+- name: copy master file
+  fetch:
+    src: /tmp/joinmaster.sh
+    dest: /tmp/joinmaster.sh
+    flat: yes  
+
+- name: copy file
+  fetch:
+    src: /tmp/join.sh
+    dest: /tmp/joinkube.sh
+    flat: yes
+
+- name: copy key
+  fetch: src={{ item }} dest={{ pki_dir }}/
   with_fileglob:
-  - ../templates/*.json.j2
+    - "/etc/kubernetes/pki/*"
+
+- name: init kubectl
+  shell: mkdir -p $HOME/.kube;sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
+# - name: cp calico file
+#   template:
+#     src: calico.yaml
+#     dest: /root/calico.yaml
 
 
-- name: 生成kubernetes相关证书
-  shell: "{{ bin_dir }}/cfssl gencert -ca={{ ca_dir }}/ca.pem -ca-key={{ ca_dir }}/ca-key.pem -config={{ ca_dir }}/ca-config.json -profile=kubernetes {{ ca_dir }}/{{ item }}-csr.json | {{ bin_dir }}/cfssljson -bare {{ ca_dir }}/{{ item }}"
-  with_items:
-  - admin
-  - kubelet
-  - aggregator-proxy
-  - kubernetes
 
-#----------- 创建admin kubectl kubeconfig文件: /root/.kube/config
-- block:
-    - name: 删除原有kubeconfig
-      file: path=/root/.kube/config state=absent
-      ignore_errors: true
-    
-    - name: 设置集群参数
-      shell: "{{ bin_dir }}/kubectl config set-cluster {{ CLUSTER_NAME }} \
-            --certificate-authority={{ ca_dir }}/ca.pem \
-            --embed-certs=true \
-            --server={{ KUBE_APISERVER }}"
-    
-    - name: 设置客户端认证参数
-      shell: "{{ bin_dir }}/kubectl config set-credentials admin \
-            --client-certificate={{ ca_dir }}/admin.pem \
-            --embed-certs=true \
-            --client-key={{ ca_dir }}/admin-key.pem"
-    
-    - name: 设置上下文参数
-      shell: "{{ bin_dir }}/kubectl config set-context {{ CLUSTER_NAME }} \
-            --cluster={{ CLUSTER_NAME }} --user=admin"
-    
-    - name: 选择默认上下文
-      shell: "{{ bin_dir }}/kubectl config use-context {{ CLUSTER_NAME }}"
-  tags: create_kctl_cfg
+- name: calico install
+  shell: kubectl apply -f https://docs.projectcalico.org/v3.14/manifests/calico.yaml
 
-- block:
-  - name: 生成 basic-auth 随机密码
-    shell: 'PWD=`date +%s%N|md5sum|head -c16`; \
-	sed -i "s/_pwd_/$PWD/g" {{ base_dir }}/roles/kube-master/defaults/main.yml; \
-	echo $PWD;'
-    connection: local
-    register: TMP_PASS
-    run_once: true
-    
-  - name: 设置 basic-auth 随机密码
-    set_fact: BASIC_AUTH_PASS={{ TMP_PASS.stdout }}
-  when: 'BASIC_AUTH_ENABLE == "yes" and BASIC_AUTH_PASS == "_pwd_"'
-  tags: restart_master
-  
-- name: 创建 basic-auth.csv
-  template: src=basic-auth.csv.j2 dest={{ ca_dir }}/basic-auth.csv
-  when: 'BASIC_AUTH_ENABLE == "yes"'
-  tags: restart_master
+# - name: wget helm
+#   get_url:
+#     url: https://get.helm.sh/helm-v3.2.1-linux-amd64.tar.gz
+#     dest: /tmp/helm-v3.2.1-linux-amd64.tar.gz
 
-- name: 创建 master 服务的 systemd unit 文件
-  template: src={{ item }}.j2 dest=/etc/systemd/system/{{ item }}
-  with_items:
-  - kube-apiserver.service
-  - kube-controller-manager.service
-  - kube-scheduler.service
-  tags: restart_master, upgrade_k8s
-
-- name: enable master 服务
-  shell: systemctl enable kube-apiserver kube-controller-manager kube-scheduler
-  ignore_errors: true
-
-- name: 启动 master 服务
-  shell: "systemctl daemon-reload && systemctl restart kube-apiserver && \
-	systemctl restart kube-controller-manager && systemctl restart kube-scheduler"
-  tags: upgrade_k8s, restart_master
-
-- name: 替换 kubeconfig 的 apiserver 地址
-  lineinfile:
-    dest: /root/.kube/config
-    regexp: "^    server"
-    line: "    server: https://{{ inventory_hostname }}:6443"
-  tags: upgrade_k8s, restart_master
-
-- name: 以轮询的方式等待master服务启动完成
-  command: "{{ bin_dir }}/kubectl get node"
-  register: result
-  until:    result.rc == 0
-  retries:  5
-  delay: 6
-  tags: upgrade_k8s, restart_master
-
-- name: 配置{{ BASIC_AUTH_USER }}用户rbac权限
-  template: src=basic-auth-rbac.yaml.j2 dest=/opt/kube/basic-auth-rbac.yaml
-  when: 'BASIC_AUTH_ENABLE == "yes"'
-  tags: restart_master
-
-- name: 创建{{ BASIC_AUTH_USER }}用户rbac权限
-  shell: "{{ bin_dir }}/kubectl apply -f /opt/kube/basic-auth-rbac.yaml"
-  when: 'BASIC_AUTH_ENABLE == "yes"'
-  run_once: true
-  tags: restart_master
+# - name: install helm
+#   shell: cd /tmp/; tar zxvf ./helm-v3.2.1-linux-amd64.tar.gz;mv linux-amd64/helm /usr/local/bin/helm

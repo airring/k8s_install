@@ -1,49 +1,60 @@
 ---
-- name: prepare some dirs
-  file: name={{ item }} state=directory
+- name: docker init
+  yum: 
+    name: "{{ item }}"
+    state: absent
   with_items:
-  - "{{ bin_dir }}"
-  - "{{ ca_dir }}"
-  - /etc/docker
-  
-- name: 下载 docker 二进制文件(>= 18.09.x)
-  copy: src={{ bin_dir }}/{{ item }} dest={{ bin_dir }}/{{ item }} mode=0755
-  with_items:
-  - containerd
-  - containerd-shim
-  - docker-init
-  - runc
-  - docker
-  - ctr
-  - dockerd
-  - docker-proxy
+    - docker
+    - docker-ce
+    - docker-common
+    - docker-selinux
+    - docker-engine
 
-- name: copy config file
-  template:
-    src: docker.service
-    dest: /etc/systemd/system/docker.service
+- name: copy file
+  get_url: 
+    url: http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo 
+    dest: /etc/yum.repos.d/docker-ce.repo
+ 
+- name: yum docker
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: 
+    - device-mapper-persistent-data
+    - lvm2
+    - docker-ce-18.09.9-3.el7.x86_64
+
+- name: docker相关目录
+  file: name=/etc/docker state=directory
+
 
 - name: copy daemon
   template:
     src: daemon.json
     dest: /etc/docker/daemon.json
 
-- name: flush-iptables
-  shell: "iptables -P INPUT ACCEPT \
-            && iptables -F && iptables -X \
-            && iptables -F -t nat && iptables -X -t nat \
-            && iptables -F -t raw && iptables -X -t raw \
-            && iptables -F -t mangle && iptables -X -t mangle"
-          
+- name: copy sysctl
+  template:
+    src: k8s.conf
+    dest: /etc/sysctl.d/k8s.conf
+
 - name: reload systemctl
-  shell: systemctl daemon-reload            
+  shell: systemctl daemon-reload
 
-- name: 开机启用docker 服务
+- name: init sysctl
+  shell: sysctl -p
+
+- name: start docker service
   service: name=docker enabled=true state=started
-  ignore_errors: true
 
-- name: 添加环境变量
-  lineinfile: 
-    dest: /etc/profile
-    regexp: "{{ bin_dir }}"
-    line: export PATH=${PATH}:{{ bin_dir }}
+# - name: copy config file
+#   template:
+#     src: docker.service
+#     dest: /etc/systemd/system/docker.service
+
+# - name: flush-iptables
+#   shell: "iptables -P INPUT ACCEPT \
+#             && iptables -F && iptables -X \
+#             && iptables -F -t nat && iptables -X -t nat \
+#             && iptables -F -t raw && iptables -X -t raw \
+#             && iptables -F -t mangle && iptables -X -t mangle"

@@ -155,9 +155,9 @@ def playbook_action(playbook, vars):
 
     for host, result in callback.host_unreachable.items():
         results_raw['unreachable'][host] = result._result['msg']
-    logger.error(results_raw)
+    # logger.error(results_raw)
 
-    # return results_raw
+    return results_raw
 
 
 class ResultsCollector(CallbackBase):

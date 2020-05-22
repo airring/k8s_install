@@ -1,0 +1,8 @@
+---
+- name: 同步ingress文件
+  templates:
+    src: traefik-ingress.yaml
+    dest: /tmp/traefik-ingress.yaml
+
+- name: 生成ingress
+  shell: kubectl apply -f /tmp/traefik-ingress.yaml

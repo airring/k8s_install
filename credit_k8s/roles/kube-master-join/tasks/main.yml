@@ -1,0 +1,4 @@
+---
+- name: copy kubernetes repo
+  import_tasks: join.yml
+  when: "inventory_hostname not in groups['kubeneter-master'][0]"

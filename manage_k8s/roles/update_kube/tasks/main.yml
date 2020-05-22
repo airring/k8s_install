@@ -1,0 +1,7 @@
+- name: include master
+  import_tasks: master.yml
+  when: inventory_hostname in groups['kubeneter-master']
+  ignore_errors: true
+
+- name: include node
+  import_tasks: node.yml
