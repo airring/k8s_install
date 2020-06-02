@@ -1,0 +1,40 @@
+---
+# - name: 添加fluentd
+#   shell: helm repo add kiwigrid https://kiwigrid.github.io
+
+- name: 安装fluentd
+  shell: helm install fluentd kiwigrid/fluentd-elasticsearch --set elasticsearch.hosts='elasticsearch-master:9200'
+
+# - name: 添加es
+#   shell: helm repo add elastic https://helm.elastic.co
+
+- name: 安装es
+  shell: helm install es elastic/elasticsearch  
+
+- name: 安装kibana
+  shell: helm install kibana elastic/kibana
+  when: KIBA_CN == "0"
+
+#中文版安装
+- name: 下载kibana的helm文件
+  shell: cd /tmp;helm fetch elastic/kibana;tar zxvf ./kibana* 
+  when: KIBA_CN == "1"
+
+- name: 添加中文开关
+  lineinfile:
+    path: /tmp/kibana/values.yaml
+    regexp: '^kibanaConfig'
+    line: "{{ KIBANA }}"
+  when: KIBA_CN == "1"
+
+- name: 安装kibana
+  shell: cd /tmp/kibana ; helm install kibana ./
+  when: KIBA_CN == "1"
+
+- name: 同步ingress文件
+  template: 
+    src: kibana_ingress.yml
+    dest: /tmp/kibana_ingress.yml
+
+- name: 加载ingress
+  shell: kubectl apply -f /tmp/kibana_ingress.yml

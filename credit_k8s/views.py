@@ -17,19 +17,20 @@ def index(request, template='index.html'):
 
 def init(request, template='init.html'):
     packet = [
-        {'packet_name': 'cni_plugins',
-         'packet_url': 'https://github.com/containernetworking/plugins/releases/download/v0.8.5/cni-plugins-linux-amd64-v0.8.5.tgz',
-         'version': '0'},
+        # {'packet_name': 'cni_plugins',
+        #  'packet_url': 'https://github.com/containernetworking/plugins/releases/download/v0.8.5/cni-plugins-linux-amd64-v0.8.5.tgz',
+        #  'version': '0'},
         {'packet_name': 'cfssl',
          'packet_url': 'https://pkg.cfssl.org/R1.2/cfssl_linux-amd64',
          'version': '1.2.0'},
         {'packet_name': 'cfssljson',
          'packet_url': 'https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64',
-         'version': '1.2.0'},
-        {'packet_name': 'crictl',
-         'packet_url': 'https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.18.0/crictl-v1.18.0-linux-amd64.tar.gz',
-         'version': '1.18.0'
-         }]
+         'version': '1.2.0'}
+        # {'packet_name': 'crictl',
+        #  'packet_url': 'https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.18.0/crictl-v1.18.0-linux-amd64.tar.gz',
+        #  'version': '1.18.0'
+        #  }
+        ]
     # pool = ConnectionPool()
     # packet_install = pool.execute("select * from packet_install")
 

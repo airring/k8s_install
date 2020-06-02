@@ -1,0 +1,8 @@
+KIBANA: |
+  kibanaConfig:
+   kibana.yml: |
+     server.name: kibana
+     server.host: "0"
+     elasticsearch.hosts: [ "http://elasticsearch-master:9200" ]
+     monitoring.ui.container.elasticsearch.enabled: true
+     i18n.locale: "zh-CN" 

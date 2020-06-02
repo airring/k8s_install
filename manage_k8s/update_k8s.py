@@ -73,3 +73,45 @@ def kubeneter():
     extra_vars['base_dir'] = filedir
     playbook_action(filedir + '/update_kube.yml', extra_vars)
     logger.error('kubelet更新完成')
+
+
+def add_kubnode(ip, hostname, username, password, port):
+    # 添加配置到/etc/ansibe/hosts
+    extra_vars = {}
+    extra_vars['ip'] = ip
+    extra_vars['hostname'] = 'localhost'
+    extra_vars['node_name'] = hostname
+    extra_vars['username'] = username
+    extra_vars['password'] = password
+    extra_vars['port'] = port
+    a = playbook_action(filedir + '/addhost_node.yml', extra_vars)
+    if not a['failed']:
+        logger.error('hosts节点添加完成')
+    else:
+        logger.error('hosts节点添加失败')
+        logger.error(a['failed'])
+        return "1"
+    # master节点读取token相关数据
+    # 通过账号密码添加用户需要关闭ssh host认证
+    # vi /etc/ansible/ansible.cfg
+    # host_key_checking = False
+    logger.error('====1============')
+    extra_vars = {}
+    a = playbook_action(filedir + '/kube-node-token.yml', extra_vars)
+    if not a['failed']:
+        logger.error('获取token成功')
+    else:
+        logger.error('获取token失败')
+        logger.error(a['failed'])
+        return "1"
+    # 安装kube_node
+    logger.error('=========2=======')
+    extra_vars = {}
+    extra_vars['hostname'] = ip
+    a = playbook_action(filedir + '/add_node.yml', extra_vars)
+    if not a['failed']:
+        logger.error('kube-node添加完成')
+    else:
+        logger.error('kube-node添加失败')
+        logger.error(a['failed'])
+        return "1"

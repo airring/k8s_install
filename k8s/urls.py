@@ -27,5 +27,7 @@ urlpatterns = [
     url(r'^init_api$', iviews.init_api, name='init_api'),
     url(r'^install_packet$', iviews.install_packet, name='install_packet'),
     url(r'^update$', mviews.update, name='update'),
-    url(r'^update_api$', mviews.update_api, name='update_api')
+    url(r'^update_api$', mviews.update_api, name='update_api'),
+    url(r'^add_node$', mviews.add_node, name='add_node'),
+    url(r'^add_node_api$', mviews.add_node_api, name='add_node_api')
 ]

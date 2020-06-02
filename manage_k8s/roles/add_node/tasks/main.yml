@@ -1,0 +1,118 @@
+# 初始化系统
+---
+- name: close firewalld
+  service: name=firewalld enabled=no state=stopped
+
+- name: selinux
+  lineinfile:
+    dest: /etc/selinux/config
+    regexp: '^SELINUX='
+    line: SELINUX=disabled
+
+- name: selinux
+  shell: setenforce 0    
+
+- name: init yum
+  get_url:
+    url: http://mirrors.aliyun.com/repo/Centos-7.repo
+    dest: /etc/yum.repos.d/CentOS-Base.repo
+
+- name: init repo
+  get_url:
+    url: http://mirrors.aliyun.com/repo/epel-7.repo
+    dest: /etc/yum.repos.d/epel.repo
+
+- name: change hostname
+  hostname: 'name={{ host_name }}'
+
+- name: add etchost
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ ansible_all_ipv4_addresses[0] }} {{ host_name }}"
+
+- name: off swap
+  shell: swapoff -a
+
+- name: change fstab
+  lineinfile:
+    dest: /etc/fstab
+    regexp: '^/dev/mapper/centos-swap'
+    state: absent
+
+# 安装docker-ce
+- name: docker init
+  yum: 
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - docker
+    - docker-ce
+    - docker-common
+    - docker-selinux
+    - docker-engine
+
+- name: copy file
+  get_url: 
+    url: http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo 
+    dest: /etc/yum.repos.d/docker-ce.repo
+ 
+- name: yum docker
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: 
+    - device-mapper-persistent-data
+    - lvm2
+    - docker-ce-18.09.9-3.el7.x86_64
+
+- name: docker相关目录
+  file: name=/etc/docker state=directory
+
+
+- name: copy daemon
+  template:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+
+- name: copy sysctl
+  template:
+    src: k8s.conf
+    dest: /etc/sysctl.d/k8s.conf
+
+- name: reload systemctl
+  shell: systemctl daemon-reload
+
+- name: init sysctl
+  shell: sysctl -p
+
+- name: start docker service
+  service: name=docker enabled=true state=started
+
+#安装kube
+- name: copy kubernetes repo
+  template:
+    src: kubernetes.repo
+    dest: /etc/yum.repos.d/kubernetes.repo
+
+- name: install kube
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - kubeadm
+    - kubelet
+    - kubectl
+
+- name: kubeadm reset
+  shell: kubeadm reset -f
+
+- name: delete pki
+  shell: rm /etc/kubernetes/pki/* -f
+
+- name: copy join file
+  copy:
+    src: /tmp/joinnode.sh
+    dest: /tmp/joinnode.sh
+
+- name: join kube
+  shell: sh /tmp/joinnode.sh

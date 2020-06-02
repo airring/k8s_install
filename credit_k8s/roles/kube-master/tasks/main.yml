@@ -53,6 +53,9 @@
     dest: /tmp/joinkube.sh
     flat: yes
 
+- name: start kubelet service
+  service: name=kubelet enabled=true 
+
 - name: copy key
   fetch: src={{ item }} dest={{ pki_dir }}/
   with_fileglob:
@@ -60,6 +63,11 @@
 
 - name: init kubectl
   shell: mkdir -p $HOME/.kube;sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
+- name: copy config 
+  fetch:
+    src: /etc/kubernetes/admin.conf
+    dest: /opt/admin.conf
 
 # - name: cp calico file
 #   template:

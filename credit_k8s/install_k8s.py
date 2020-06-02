@@ -87,7 +87,7 @@ def kube_master_join():
             return "1"
     except Exception as e:
         logger.error(e)
-        return "1"        
+        return "1"
 
 
 def kube_node():

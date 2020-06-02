@@ -1,0 +1,20 @@
+---
+- name: 生成token
+  shell: kubeadm token create
+
+- name: 读取token信息
+  shell: kubeadm token list | awk -F" " '{print $1}' |tail -n 1 > /tmp/token.txt
+
+- name: 生成加密串
+  shell: openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | awk '{print $2}' > /tmp/hash.txt
+  
+- name: 拼接
+  shell: echo "kubeadm join {{ DEFAULE_DOMAIN }}:6443 --token `cat /tmp/token.txt` 
+     --discovery-token-ca-cert-hash sha256:`cat /tmp/hash.txt`" > /tmp/joinnode.sh
+
+
+- name: copy file
+  fetch:
+    src: /tmp/joinnode.sh
+    dest: /tmp/joinnode.sh
+    flat: yes

@@ -59,7 +59,6 @@ $(function (){
             $("#jd"+els[i].innerText).html('<div class="spinner-border text-success" role="status">\n' +
                 '  <span class="sr-only">Loading...</span>\n' +
                 '</div>');
-            {#pack[els[i].id]=els[i].value#}
             var html = await $.ajax({
             type: "POST",
             url: "{% url 'install_packet' %}",

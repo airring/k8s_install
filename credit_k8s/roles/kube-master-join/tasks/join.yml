@@ -40,3 +40,12 @@
 
 - name: join kube
   shell: sh /tmp/joinmaster.sh
+
+- name: start kubelet service
+  service: name=kubelet enabled=true 
+
+- name: init kubectl
+  shell: mkdir -p $HOME/.kube
+
+- name: copy file
+  copy: src=/opt/admin.conf dest=$HOME/.kube/config

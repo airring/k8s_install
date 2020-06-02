@@ -1,0 +1,3 @@
+- hosts: "{{ groups['kubeneter-master'][0] }}"
+  roles:
+  - kube-node-token

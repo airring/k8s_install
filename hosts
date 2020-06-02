@@ -1,11 +1,13 @@
 [kubeneter-master]
 192.168.3.51 ansible_ssh_user=root host_name=k8s-master1
 192.168.3.52 ansible_ssh_user=root host_name=k8s-master2
+# add master tag
 
 [kubeneter-node]
 192.168.3.53 ansible_ssh_user=root host_name=k8s-node1
 192.168.3.54 ansible_ssh_user=root host_name=k8s-node2
 192.168.3.55 ansible_ssh_user=root host_name=k8s-node3
+# add node tag
 
 [etcd]
 192.168.3.51 ansible_ssh_user=root NODE_NAME=etcd1
@@ -40,3 +42,8 @@ DEFAULE_DOMAIN=master.szrrjc.com
 CLUSTER_DNS_DOMAIN="cluster.local."
 
 CONTAINER_RUNTIME="docker"
+
+KIBANA_URL="kibana.bkeb.vip"
+
+#kibana语言选择,1为中文版,0为默认语言
+KIBA_CN=1
