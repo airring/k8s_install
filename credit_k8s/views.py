@@ -92,3 +92,34 @@ def install_packet(request):
          'name': name
         }
     return JsonResponse(context)
+
+
+# 插件安装页面
+def init_publ(request, template='init_publ.html'):
+    packet_install = ['helm', 'traefik_ingress', 'efk', 'prometheus_operator']
+    logger.error(packet_install)
+    context = {
+        'packet': packet_install
+    }
+    return render(request, template, context)
+
+
+# 插件安装
+@csrf_exempt
+def init_publ_api(request):
+    pk_version = json.loads(request.body)
+    name = pk_version['name']
+    logger.error(name)
+    a = getattr(install_k8s, name)()
+    if a == "1":
+        context = {
+         'msg': '发布失败',
+         'status': 2,
+         'name': name
+        }
+    else:
+        context = {
+         'status': 1,
+         'name': name
+        }
+    return JsonResponse(context)

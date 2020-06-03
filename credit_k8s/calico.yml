@@ -1,3 +1,0 @@
-- hosts: kubeneter-master
-  roles:
-  - calico

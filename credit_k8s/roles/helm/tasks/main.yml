@@ -1,0 +1,7 @@
+- name: wget helm
+  get_url:
+    url: https://get.helm.sh/helm-v3.2.1-linux-amd64.tar.gz
+    dest: /tmp/helm-v3.2.1-linux-amd64.tar.gz
+
+- name: install helm
+  shell: cd /tmp/; tar zxvf ./helm-v3.2.1-linux-amd64.tar.gz;mv linux-amd64/helm /usr/local/bin/helm

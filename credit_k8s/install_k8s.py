@@ -105,3 +105,55 @@ def kube_node():
 
 def kubeneter():
     pass
+
+
+def helm():
+    extra_vars = {}
+    extra_vars['hostname'] = 'kube-master'
+    extra_vars['base_dir'] = filedir
+    a = playbook_action(filedir + '/helm.yml', extra_vars)
+    if not a['failed']:
+        logger.error('helm安装完成')
+    else:
+        logger.error('helm安装失败')
+        logger.error(a['failed'])
+        return "1"
+
+
+def traefik_ingress():
+    extra_vars = {}
+    extra_vars['hostname'] = 'kube-master'
+    extra_vars['base_dir'] = filedir
+    a = playbook_action(filedir + '/traefik-ingress.yml', extra_vars)
+    if not a['failed']:
+        logger.error('traefik-ingress安装完成')
+    else:
+        logger.error('traefik-ingress安装失败')
+        logger.error(a['failed'])
+        return "1"
+
+
+def efk():
+    extra_vars = {}
+    extra_vars['hostname'] = 'kube-master'
+    extra_vars['base_dir'] = filedir
+    a = playbook_action(filedir + '/efk.yml', extra_vars)
+    if not a['failed']:
+        logger.error('efk安装完成')
+    else:
+        logger.error('efk安装失败')
+        logger.error(a['failed'])
+        return "1"
+
+
+def prometheus_operator():
+    extra_vars = {}
+    extra_vars['hostname'] = 'kube-master'
+    extra_vars['base_dir'] = filedir
+    a = playbook_action(filedir + '/prometheus-operator.yml', extra_vars)
+    if not a['failed']:
+        logger.error('prometheus-operator安装完成')
+    else:
+        logger.error('prometheus-operator安装失败')
+        logger.error(a['failed'])
+        return "1"

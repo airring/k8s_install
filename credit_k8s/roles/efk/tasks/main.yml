@@ -9,10 +9,10 @@
 #   shell: helm repo add elastic https://helm.elastic.co
 
 - name: 安装es
-  shell: helm install es elastic/elasticsearch  
+  shell: helm install es elastic/elasticsearch  --set master.persistence.enabled=false --set data.persistence.enabled=false 
 
 - name: 安装kibana
-  shell: helm install kibana elastic/kibana
+  shell: helm install kibana elastic/kibana --set ingress.enabled=true --set ingress.hosts={{ KIBANA_URL }}
   when: KIBA_CN == "0"
 
 #中文版安装
@@ -28,13 +28,13 @@
   when: KIBA_CN == "1"
 
 - name: 安装kibana
-  shell: cd /tmp/kibana ; helm install kibana ./
+  shell: cd /tmp/kibana ; helm install kibana ./  --set ingress.enabled=true --set ingress.hosts={{ KIBANA_URL }}
   when: KIBA_CN == "1"
 
-- name: 同步ingress文件
-  template: 
-    src: kibana_ingress.yml
-    dest: /tmp/kibana_ingress.yml
+# - name: 同步ingress文件
+#   template: 
+#     src: kibana_ingress.yml
+#     dest: /tmp/kibana_ingress.yml
 
-- name: 加载ingress
-  shell: kubectl apply -f /tmp/kibana_ingress.yml
+# - name: 加载ingress
+#   shell: kubectl apply -f /tmp/kibana_ingress.yml

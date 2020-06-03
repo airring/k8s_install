@@ -47,3 +47,5 @@ KIBANA_URL="kibana.bkeb.vip"
 
 #kibana语言选择,1为中文版,0为默认语言
 KIBA_CN=1
+
+PROME_URL="pro.bkeb.vip"

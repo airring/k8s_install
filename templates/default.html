@@ -90,27 +90,31 @@
     <div class="navigation-menu-body">
         <ul>
             <li class="navigation-divider">Main</li>
+                <li class="{% block init_kube %}{% endblock %}">
+                    <a href="default.html">
+                        <i class="nav-link-icon" data-feather="monitor"></i>
+                        <span>初始化</span>
+                    </a>
+                    <ul>
+                        <li><a class="{% block init %}{% endblock %}" href="init">下载</a></li>
+                        <li><a class="{% block init_2 %}{% endblock %}" href="init_2">安装k8s</a></li>
+                        <li><a class="{% block init_publ %}{% endblock %}" href="init_publ">工具安装</a></li>
 
-            <li>
-                <a class="{% block init %}{% endblock %}" href="init">
-                    <i  data-feather="message-circle"></i>
-                    <span >初始化</span>
-                    <span class="badge badge-danger">2</span>
-                </a>
-            </li>
-            <li >
+                    </ul>
+                </li>
                 <li class="{% block manage %}{% endblock %}">
-                <a href="default.html">
-                    <i class="nav-link-icon"  data-feather="bar-chart-2"></i>
-                    <span>集群管理</span>
-                </a>
-                <ul>
-                    <!-- <li><a class="{% block update %}{% endblock %}" href="update">升级</a></li> -->
-                    <!-- <li><a href="#">添加etcd</a></li> -->
-                    <li><a href="#">添加kube-master</a></li>
-                    <li><a class="{% block add_node %}{% endblock %}" href="add_node">添加kube-node</a></li>
+                    <a href="default.html">
+                        <i class="nav-link-icon"  data-feather="bar-chart-2"></i>
+                        <span>集群管理</span>
+                    </a>
+                    <ul>
+                        <!-- <li><a class="{% block update %}{% endblock %}" href="update">升级</a></li> -->
+                        <!-- <li><a href="#">添加etcd</a></li> -->
+                        <li><a href="#">添加kube-master</a></li>
+                        <li><a class="{% block add_node %}{% endblock %}" href="add_node">添加kube-node</a></li>
 
-                </ul>
+                    </ul>
+                </li>
             </li>
 
 
@@ -193,6 +197,7 @@
 
 <!-- App scripts -->
 <script src="static/assets/js/app.min.js"></script>
+<script src="static/assets/js/custom.js"></script>
 {% block js %}
 
 {% endblock %}

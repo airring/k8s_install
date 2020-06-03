@@ -23,6 +23,12 @@ sed -i 's/#host_key_checking = False/host_key_checking = False/' /etc/ansible/an
 
 python3 manage.py runserver 0.0.0.0:8080
 ```
+## hosts参数说明
+<span style="color: red"> DEFAULE_DOMAIN kube-apiserver调用域名,需要将域名解析至master服务器上,不然后续初始化会报错 </span>
+SERVICE_CIDR podIP段
+KIBANA_URL kibana ingress所使用的域名,需要修改为自己的域名 
+KIBA_CN kibana中文开关
+
 ## 证书说明
 证书模版分别放置位置为:
 ```
@@ -30,6 +36,7 @@ ca : credit_k8s/roles/ca/templates
 etcd : credit_k8s/roles/etcd/templates
 ```
 k8s其他证书皆为以来ca证书生成,如果需要更新证书替换ca证书即可
+
 
 ## 开始运行
 打开 ip:8080/init 进入初始化页面,比如我的环境为 192.168.3.50即:
@@ -45,3 +52,32 @@ http://192.168.3.50:8080/init
 ### 因为默认为使用多master节点,如果使用单master节点会出现master_join安装失败,并不影响后续使用
 
 ![image](img/2.png)
+
+## 插件安装
+网络插件在kubemaster安装的时候会默认选择calico
+如果需要修改网络插件,先删除calico再进行安装
+
+helm插件因为安装较大,可以选择自行安装,避免自动安装超时,因为efk和prometheus依赖helm来安装,所以请务必确认helm已经安装完成
+```
+cd /tmp
+wget https://get.helm.sh/helm-v3.2.1-linux-amd64.tar.gz
+cd /tmp/; tar zxvf ./helm-v3.2.1-linux-amd64.tar.gz;mv linux-amd64/helm /usr/local/bin/helm
+```
+因为efk和prometheus依赖helm来安装,所以请务必确认helm已经安装完成
+
+traefik-ingress所使用namespace为ingress,需要请自行修改
+[credit_k8s/roles/traefik-ingress/templates/traefik-ingress.yaml](./credit_k8s/roles/traefik-ingress/templates/traefik-ingress.yaml)
+
+![image](img/3.png)
+
+ingress访问方式为nodeip:30001,管理页面为nodeip:30002
+
+可以在前端设置负载方式访问80端口负载至nodeip:30001即可通过配置的域名来访问kibana和prometheus
+
+## 节点添加
+
+![image](img/4.png)
+
+按需求输入需要添加的节点相关信息即可
+如果勾选已做好免密登陆,则不需要输入密码
+因为没有hosts文件没有做去重判断,如果重复添加,请手动删除/etc/ansible/hosts下的重复信息
