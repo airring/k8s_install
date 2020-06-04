@@ -1,0 +1,197 @@
+{% extends 'default.html' %}
+{% load static %}
+{% block manage %}open{% endblock %}
+
+{% block add_master %}active{% endblock %}
+
+{% block head %}
+{% endblock %}
+{% block re_content %}
+        <div class="main-content">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                        <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title">请输入需要添加节点的IP</h6>
+                            <div class="row">
+                                <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="validationCustom01">请输入IP</label>
+                                            <input type="text" class="form-control" id="inputip" name="packet" placeholder="ipaddr"  required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="validationCustom01">请输入hostname</label>
+                                            <input type="text" class="form-control" id="inputhost" name="packet" placeholder="hostname"  required>  
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="validationCustom01">请输入端口号</label>
+                                            <input type="text" class="form-control" id="inputport" name="packet" placeholder="port" value='22' required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="validationCustom01">请输入用户名</label>
+                                            <input type="text" class="form-control" id="inputuser" name="packet" placeholder="username"  required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="validationCustom01">请输入密码</label>
+                                            <input type="password" class="form-control" id="inputpass" name="packet" placeholder="password" >
+                                        </div>
+                                        <div class="form-group form-check">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1" >
+                                            <label class="form-check-label"  for="exampleCheck1" >已经做好免密登陆</label>
+                                        </div>
+                                        <button type="submit" id="tijiao" class="btn btn-primary">添加节点</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                <div class="card">
+                    <div class="card-body">
+                            <div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th scope="col">packet</th>
+
+            <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr id="changess">
+
+            <td></td>
+            <td>
+                
+                <span class="badge badge-warning">Pending</span>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+                        </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        </div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+$(function (){
+    $("#tijiao").click(function(){
+        var ip =document.getElementById("inputip").value;
+        var ip_hostname = document.getElementById("inputhost").value;
+        var username =document.getElementById("inputuser").value;
+        var password =document.getElementById("inputpass").value;
+        var port =document.getElementById("inputport").value;
+        if ( ip == '' ){
+            swal("error!", "请输入ip地址!", "error");
+            return;
+        }
+        if ( exampleCheck1.checked == false && password == ''){
+            swal("error!", "请输入密码!", "error");
+            return;
+        }
+        console.log(ip)
+        $("#changess").html('<td>'+ip+'</td>\n' +
+            '<td><div class="spinner-border text-success" role="status">\n' +
+            '  <span class="sr-only">Loading...</span>\n' +
+            '</div></td>');
+        
+        var html = $.ajax({
+        type: "POST",
+        url: "{% url 'add_master_api' %}",
+        data: JSON.stringify({'ip':ip, 'hostname':ip_hostname, 'username':username, 'port':port, 'password':password, 'nopass':exampleCheck1.checked}),
+        dataType: 'JSON',
+        success: function (data) {
+            console.log(data)
+            if (data.status == 1){
+            $("#changess").html('<td>'+ip+'</td>\n' +
+            '<td><span class="badge badge-info">安装完成</span></td>');
+            }
+            else {
+            $("#changess").html('<td>'+ip+'</td>\n' +
+            '<td><span class="badge badge-danger">未完成</span></td>');
+            }
+        }
+        })
+
+
+        
+    })
+})
+</script>
+<script>
+$(function (){
+    $("#install").click(function(){
+        var els =document.getElementsByClassName('badge badge-info').length;
+        var pack_name=$('#selct_pt option:selected').val();
+        $("#changess").html('<td>'+pack_name+'</td>\n' +
+            '<td><div class="spinner-border text-success" role="status">\n' +
+            '  <span class="sr-only">Loading...</span>\n' +
+            '</div></td>');
+        console.log(els);
+        if ( els == 3 ){
+            swal("Good job!", "You clicked the button!", "success")
+            .then((willDelete) => {
+                var html = $.ajax({
+                type: "POST",
+                url: "{% url 'update_api' %}",
+                data: JSON.stringify({'name':pack_name,'version':document.getElementById("inputip").value}),
+                dataType: 'JSON',
+                success: function (data) {
+                    console.log(data)
+                    if (data.status == 1){
+                    $("#changess").html('<td>'+pack_name+'</td>\n' +
+                    '<td><span class="badge badge-info">更新完成</span></td>');
+                    }
+                    else {
+                    $("#changess").html('<td>'+pack_name+'</td>\n' +
+                    '<td><span class="badge badge-danger">更新失败</span></td>');
+                    }
+                }
+                })
+            });
+        }
+        else if ( exampleCheck1.checked == true ){
+            swal("warning!", "请确认文件拷贝到/opt目录且按照要求命名!", "warning")
+            .then((willDelete) => {
+                var html = $.ajax({
+                type: "POST",
+                url: "{% url 'update_api' %}",
+                data: JSON.stringify({'name':pack_name,'version':document.getElementById("inputip").value}),
+                dataType: 'JSON',
+                success: function (data) {
+                    console.log(data)
+                    if (data.status == 1){
+                    $("#changess").html('<td>'+pack_name+'</td>\n' +
+                    '<td><span class="badge badge-info">更新完成</span></td>');
+                    }
+                    else {
+                    $("#changess").html('<td>'+pack_name+'</td>\n' +
+                    '<td><span class="badge badge-danger">更新失败</span></td>');
+                    }
+                }
+                })
+            });
+        }
+        else {
+            swal("error!", "你还有服务没有下载完成!", "error");
+        }
+    })
+})
+</script>
+
+<script src="static/assets/js/custom.js"></script>
+{% endblock %}

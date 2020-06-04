@@ -75,7 +75,7 @@ def kubeneter():
     logger.error('kubelet更新完成')
 
 
-def add_kubnode(ip, hostname, username, password, port):
+def add_kubnode(ip, hostname, username, password, port, addhost):
     # 添加配置到/etc/ansibe/hosts
     extra_vars = {}
     extra_vars['ip'] = ip
@@ -83,6 +83,7 @@ def add_kubnode(ip, hostname, username, password, port):
     extra_vars['node_name'] = hostname
     extra_vars['username'] = username
     extra_vars['password'] = password
+    extra_vars['addhost'] = addhost
     extra_vars['port'] = port
     a = playbook_action(filedir + '/addhost_node.yml', extra_vars)
     if not a['failed']:
@@ -108,6 +109,7 @@ def add_kubnode(ip, hostname, username, password, port):
     logger.error('=========2=======')
     extra_vars = {}
     extra_vars['hostname'] = ip
+    extra_vars['addhost'] = addhost
     a = playbook_action(filedir + '/add_node.yml', extra_vars)
     if not a['failed']:
         logger.error('kube-node添加完成')

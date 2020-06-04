@@ -8,13 +8,23 @@
 - name: 生成加密串
   shell: openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | awk '{print $2}' > /tmp/hash.txt
   
-- name: 拼接
+- name: 拼接node
   shell: echo "kubeadm join {{ DEFAULE_DOMAIN }}:6443 --token `cat /tmp/token.txt` 
      --discovery-token-ca-cert-hash sha256:`cat /tmp/hash.txt`" > /tmp/joinnode.sh
+
+- name: 拼接master
+  shell: echo "kubeadm join {{ DEFAULE_DOMAIN }}:6443 --token `cat /tmp/token.txt` 
+     --discovery-token-ca-cert-hash sha256:`cat /tmp/hash.txt` --control-plane" > /tmp/joinmaster.sh
 
 
 - name: copy file
   fetch:
     src: /tmp/joinnode.sh
     dest: /tmp/joinnode.sh
+    flat: yes
+
+- name: copy file
+  fetch:
+    src: /tmp/joinmaster.sh
+    dest: /tmp/joinmaster.sh
     flat: yes

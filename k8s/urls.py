@@ -31,5 +31,7 @@ urlpatterns = [
     url(r'^update$', mviews.update, name='update'),
     url(r'^update_api$', mviews.update_api, name='update_api'),
     url(r'^add_node$', mviews.add_node, name='add_node'),
+    url(r'^add_master$', mviews.add_master, name='add_master'),
+    url(r'^add_master_api$', mviews.add_master_api, name='add_master_api'),
     url(r'^add_node_api$', mviews.add_node_api, name='add_node_api')
 ]

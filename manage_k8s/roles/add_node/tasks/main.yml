@@ -109,10 +109,29 @@
 - name: delete pki
   shell: rm /etc/kubernetes/pki/* -f
 
+- name: master添加证书
+  copy: src={{ item }} dest=/etc/kubernetes/pki/
+  when: "{{ addhost }}" == 'addhost_master' 
+  with_fileglob:
+    - "{{ pki_dir }}/*"
+  
+
 - name: copy join file
   copy:
     src: /tmp/joinnode.sh
     dest: /tmp/joinnode.sh
+  when: "{{ addhost }}" == 'addhost_node' 
 
 - name: join kube
   shell: sh /tmp/joinnode.sh
+  when: "{{ addhost }}" == 'addhost_node' 
+
+- name: copy master file
+  copy:
+    src: /tmp/joinmaster.sh
+    dest: /tmp/joinmaster.sh
+  when: "{{ addhost }}" == 'addhost_master' 
+
+- name: join kube
+  shell: sh /tmp/joinmaster.sh
+  when: "{{ addhost }}" == 'addhost_master' 

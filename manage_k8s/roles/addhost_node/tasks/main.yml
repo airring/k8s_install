@@ -1,7 +1,16 @@
 ---
-- name: test
+- name: 修改node节点
   lineinfile:
     path: /etc/ansible/hosts
     insertbefore: '^# add node tag'
     line: "{{ ip }} ansible_ssh_user={{ username }} host_name={{ node_name }} ansible_port={{ port }} ansible_ssh_pass={{ password }}"
     create: yes 
+    when: "{{ addhost }}" == 'addhost_node'
+
+- name: 修改master节点
+  lineinfile:
+    path: /etc/ansible/hosts
+    insertbefore: '^# add master tag'
+    line: "{{ ip }} ansible_ssh_user={{ username }} host_name={{ node_name }} ansible_port={{ port }} ansible_ssh_pass={{ password }}"
+    create: yes 
+    when: "{{ addhost }}" == 'addhost_master' 
