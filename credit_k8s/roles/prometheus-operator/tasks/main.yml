@@ -7,5 +7,13 @@
 #     regexp: '^kibanaConfig'
 #     line: "{{ PRO }}"
 
-- name: test
-  shell: helm install prometheus stable/prometheus-operator --set kubeEtcd.endpoints='{'{{ PRO }}'}' --set grafana.ingress.enabled=true --set grafana.ingress.hosts='{'grafa.bkeb.vip'}' --set prometheus.ingress.enabled=true --set prometheus.ingress.hosts='{'{{ PROME_URL }}'}'
+- name: prometheus安装
+  shell: |
+    helm install prometheus stable/prometheus-operator \
+    --set kubeEtcd.endpoints='{'{{ PRO }}'}' \
+    --set kubeEtcd.serviceMonitor.scheme=https \
+    --set kubeEtcd.serviceMonitor.insecureSkipVerify=true \
+    --set grafana.ingress.enabled=true  \
+    --set grafana.ingress.hosts='{'grafa.bkeb.vip'}' \ 
+    --set prometheus.ingress.enabled=true \
+    --set prometheus.ingress.hosts='{'{{ PROME_URL }}'}'

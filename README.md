@@ -74,6 +74,15 @@ ingress访问方式为nodeip:30001,管理页面为nodeip:30002
 
 可以在前端设置负载方式访问80端口负载至nodeip:30001即可通过配置的域名来访问kibana和prometheus
 
+因为kube-proxy默认监听ip为127.0.0.1,所以需要手动修改configmap
+
+```
+kubectl -n kube-system edit cm kube-proxy
+# 找到metricsBindAddress改成
+metricsBindAddress: 0.0.0.0:10249
+```
+修改完成以后需要重启kube-proxy即可获取到数据
+
 ## 节点添加
 
 ![image](img/4.png)
