@@ -1,5 +1,6 @@
 - hosts:
   - kubeneter-node
   - kubeneter-master
+  run_once: true
   roles:
   - update_kube
