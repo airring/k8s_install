@@ -1,10 +1,16 @@
 # k8s_install
 包括k8s安装, 外部etcd安装, k8s node节点以及master节点扩展.所使用的其他外部插件如下:
+
 网络: calico
+
 日志: es+fluentd+kibana
+
 监控: prometheus+grafana
+
 sc: cephrbd
+
 ingress: traefik
+
 如有外部插件如有替代方案进入[credit_k8s/roles/](./credit_k8s/roles/)下修改即可.
 
 ## python版本说明
