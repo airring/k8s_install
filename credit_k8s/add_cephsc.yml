@@ -2,6 +2,19 @@
   roles:
   - create-cephuser
 
+- hosts: 
+  - kubeneter-master
+  - kubeneter-node
+  tasks:
+  - name: 安装ceph-common
+    package:
+      name: ceph-common
+      state: present
+  - name: 同步文件
+    copy:
+      src: /tmp/ceph.conf
+      dest: /etc/ceph/ceph.conf
+
 - hosts: "{{ groups['kubeneter-master'][0] }}"
   roles: 
   - add-cephsc

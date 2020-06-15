@@ -127,7 +127,7 @@ def init_publ_api(request):
 
 # ceph安装页面
 def init_ceph(request, template='init_ceph.html'):
-    packet_install = ['ceph','add_cephsc']
+    packet_install = ['ceph', 'add_cephsc']
     logger.error(packet_install)
     context = {
         'packet': packet_install

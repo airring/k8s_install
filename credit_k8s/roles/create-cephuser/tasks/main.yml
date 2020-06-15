@@ -13,3 +13,5 @@
   - cephkube.key
   - cephadmin.key
 
+- name: ceph.conf文件传输
+  fetch: src=/etc/ceph/ceph.conf dest=/tmp/ceph.conf flat=yes
