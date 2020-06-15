@@ -20,7 +20,9 @@ https://www.python.org/downloads/source/
 
 ## hosts文件说明
 hosts文件中因为分组名称在使用ansible安装时会通过分组名来获取服务ip,所以group名称最好不做修改,分组调用的文件会统一在defaults/main.yml下定义变量.
+
 默认运行文件保存位置 /opt/kube/bin
+
 默认证书文件保存位置 /opt/ssl
 
 ## 启动命令

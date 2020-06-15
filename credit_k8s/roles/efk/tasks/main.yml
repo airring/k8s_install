@@ -12,7 +12,7 @@
   shell: helm install es elastic/elasticsearch  --set master.persistence.enabled=false --set data.persistence.enabled=false 
 
 - name: 安装kibana
-  shell: helm install kibana elastic/kibana --set ingress.enabled=true --set ingress.hosts={{ KIBANA_URL }}
+  shell: helm install kibana elastic/kibana --set ingress.enabled=true --set ingress.hosts='{'{{ KIBANA_URL }}'}'
   when: KIBA_CN == "0"
 
 #中文版安装
@@ -28,7 +28,7 @@
   when: KIBA_CN == "1"
 
 - name: 安装kibana
-  shell: cd /tmp/kibana ; helm install kibana ./  --set ingress.enabled=true --set ingress.hosts={{ KIBANA_URL }}
+  shell: cd /tmp/kibana ; helm install kibana ./  --set ingress.enabled=true --set ingress.hosts='{'{{ KIBANA_URL }}'}'
   when: KIBA_CN == "1"
 
 # - name: 同步ingress文件
