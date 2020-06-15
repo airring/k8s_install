@@ -1,4 +1,12 @@
 # k8s_install
+包括k8s安装, 外部etcd安装, k8s node节点以及master节点扩展.所使用的其他外部插件如下:
+网络: calico
+日志: es+fluentd+kibana
+监控: prometheus+grafana
+sc: cephrbd
+ingress: traefik
+如有外部插件如有替代方案进入[credit_k8s/roles/](./credit_k8s/roles/)下修改即可.
+
 ## python版本说明
 因为python的ansible-playbook在python2和python3上使用方法上存在差异,所以统一使用python3
 python3 下载地址:
@@ -52,6 +60,17 @@ http://192.168.3.50:8080/init
 ### 因为默认为使用多master节点,如果使用单master节点会出现master_join安装失败,并不影响后续使用
 
 ![image](img/2.png)
+
+## cephrbd安装(可选)
+如果有需要数据持久化的方案可以选择安装ceph
+ceph安装分为2步:
+1.ceph安装以及资源池生成,创建osd默认为添加所有的空闲硬盘,默认使用pool name为k8s,如果需要手动指定请修改
+[credit_k8s/roles/ceph/tasks/main.yml](./credit_k8s/roles/ceph/tasks/main.yml)
+2.在k8s上添加rbd,导入ceph的用户证书以及生成ceph的sc [credit_k8s/roles/create-cephuser/tasks/main.yml](./credit_k8s/roles/create-cephuser/tasks/main.yml)
+ [credit_k8s/roles/add-cephsc/tasks/main.yml](./credit_k8s/roles/add-cephsc/tasks/main.yml)
+创建完成以后可以创建一个pvc测试会默认关联pv从ceph申请创建image并绑定
+sc模版 [credit_k8s/roles/add-cephsc/templates/storageclass-ceph.yaml](./credit_k8s/roles/add-cephsc/templates/storageclass-ceph.yaml)
+rbd模版 [credit_k8s/roles/add-cephsc/templates/external-storage-rbd.yaml](./credit_k8s/roles/add-cephsc/templates/external-storage-rbd.yaml)
 
 ## 插件安装
 网络插件在kubemaster安装的时候会默认选择calico

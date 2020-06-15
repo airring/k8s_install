@@ -1,0 +1,2 @@
+TMP_NODES: "{% for h in groups['ceph'] %}{{ h }}:6789,{% endfor %}"
+CEPH_IP: "{{ TMP_NODES.rstrip(',') }}"

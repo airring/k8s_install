@@ -1,0 +1,15 @@
+- name: 创建kube用户
+  shell: cephadm shell -- ceph auth get-or-create client.kube  mon 'allow r' osd 'allow rwx pool=k8s'
+
+- name: 生成密钥文件
+  shell: cephadm shell -- ceph auth get-key client.kube > /tmp/cephkube.key
+
+- name: 生成admin密钥文件
+  shell: cephadm shell -- ceph auth get-key client.admin > /tmp/cephadmin.key
+
+- name: admin文件传输
+  fetch: src=/tmp/{{ item }} dest=/tmp/{{ item }} flat=yes
+  with_items:
+  - cephkube.key
+  - cephadmin.key
+

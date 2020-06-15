@@ -123,3 +123,34 @@ def init_publ_api(request):
          'name': name
         }
     return JsonResponse(context)
+
+
+# ceph安装页面
+def init_ceph(request, template='init_ceph.html'):
+    packet_install = ['ceph','add_cephsc']
+    logger.error(packet_install)
+    context = {
+        'packet': packet_install
+    }
+    return render(request, template, context)
+
+
+# ceph安装
+@csrf_exempt
+def init_ceph_api(request):
+    pk_version = json.loads(request.body)
+    name = pk_version['name']
+    logger.error(name)
+    a = getattr(install_k8s, name)()
+    if a == "1":
+        context = {
+         'msg': '发布失败',
+         'status': 2,
+         'name': name
+        }
+    else:
+        context = {
+         'status': 1,
+         'name': name
+        }
+    return JsonResponse(context)

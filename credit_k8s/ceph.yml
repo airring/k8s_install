@@ -1,0 +1,5 @@
+- hosts: ceph
+  roles:
+  - initsys
+  - docker 
+  - ceph

@@ -1,0 +1,67 @@
+- name: wget cephadm
+  get_url:
+    url: https://github.com/ceph/ceph/raw/octopus/src/cephadm/cephadm
+    dest: /usr/bin/cephadm
+
+- name: 初始包安装
+  yum: 
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - python3
+
+- name: hosts文件修改
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ HOSTS }}"
+    create: yes
+  
+
+- name: 添加权限
+  shell: chmod +x /usr/bin/cephadm; mkdir -p /etc/ceph
+  when: "inventory_hostname == groups['ceph'][0] "
+
+- name: 安装ceph集群
+  shell: cephadm bootstrap --mon-ip {{ groups['ceph'][0] }} > /tmp/ceph.txt
+  when: "inventory_hostname == groups['ceph'][0] "
+
+- name: 映射ceph命令
+  shell: alias ceph='cephadm shell -- ceph'
+  when: "inventory_hostname == groups['ceph'][0] "
+
+- name: 修改环境变量
+  lineinfile:
+    src: /etc/profile
+    line: alias ceph='cephadm shell -- ceph'
+    create: yes
+
+- name: 拷贝ceph证书
+  fetch: 
+    src: /etc/ceph/ceph.pub 
+    dest: /tmp/ceph.pub
+    flat: yes
+  when: "inventory_hostname == groups['ceph'][0] "
+
+- name: ceph免密登陆
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('file', '/tmp/ceph.pub') }}"
+
+- name: 添加节点
+  shell: cephadm shell -- ceph orch host add {{ item }}
+  with_items: "{{ CEPHHOST }}"
+  when: "inventory_hostname == groups['ceph'][0] "
+
+- name: 修改mrg登陆密码
+  shell: cephadm shell -- ceph dashboard set-login-credentials admin test123456
+  when: "inventory_hostname == groups['ceph'][0] "
+
+- name: 添加osd,将所以剩余硬盘添加
+  shell: cephadm shell -- ceph orch apply osd --all-available-devices
+  when: "inventory_hostname == groups['ceph'][0] "
+
+
+- name: 创建资源池
+  shell: cephadm shell -- ceph osd pool create k8s 
+  when: "inventory_hostname == groups['ceph'][0] "

@@ -1,0 +1,14 @@
+TMP_ENDPOINT1: "{% for h in groups['ceph'] %}'{{ h }}',{% endfor %}"
+CEPH: "[{{ TMP_ENDPOINT1.rstrip(',') }}]" 
+
+TMP_ENDPOINT2: "{% for h in groups['ceph'] %}
+                {% if h != groups['ceph'][0]%}
+                  '{{ hostvars[h]['host_name'] }}',
+                {% endif %}
+                {% endfor %}"
+CEPHHOST: "[{{ TMP_ENDPOINT2.rstrip(',') }}]" 
+
+HOSTS: "{% for h in groups['ceph'] %}
+{{ h }}  {{ hostvars[h]['host_name'] }}
+
+{% endfor %}"

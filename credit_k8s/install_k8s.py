@@ -107,6 +107,7 @@ def kubeneter():
     pass
 
 
+# plug
 def helm():
     extra_vars = {}
     extra_vars['hostname'] = 'kube-master'
@@ -155,5 +156,31 @@ def prometheus_operator():
         logger.error('prometheus-operator安装完成')
     else:
         logger.error('prometheus-operator安装失败')
+        logger.error(a['failed'])
+        return "1"
+
+
+def ceph():
+    extra_vars = {}
+    extra_vars['hostname'] = 'ceph'
+    extra_vars['base_dir'] = filedir
+    a = playbook_action(filedir + '/ceph.yml', extra_vars)
+    if not a['failed']:
+        logger.error('ceph安装完成')
+    else:
+        logger.error('ceph安装失败')
+        logger.error(a['failed'])
+        return "1"
+
+
+def add_cephsc():
+    extra_vars = {}
+    extra_vars['hostname'] = 'ceph'
+    extra_vars['base_dir'] = filedir
+    a = playbook_action(filedir + '/add_cephsc.yml', extra_vars)
+    if not a['failed']:
+        logger.error('add_cephsc安装完成')
+    else:
+        logger.error('add_cephsc安装失败')
         logger.error(a['failed'])
         return "1"

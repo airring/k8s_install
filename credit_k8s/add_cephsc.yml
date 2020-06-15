@@ -1,0 +1,7 @@
+- hosts: "{{ groups['ceph'][0] }}"
+  roles:
+  - create-cephuser
+
+- hosts: "{{ groups['kubeneter-master'][0] }}"
+  roles: 
+  - add-cephsc

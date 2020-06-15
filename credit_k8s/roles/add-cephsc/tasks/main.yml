@@ -1,0 +1,27 @@
+- name: 拷贝密钥文件
+  copy: src=/tmp/{{ item }} dest=/tmp/{{ item }}
+  with_items:
+  - cephadmin.key
+  - cephkube.key
+
+- name: 同步rdb模板文件
+  template:
+    src: external-storage-rbd.yaml
+    dest: /tmp/external-storage-rbd.yaml
+
+- name: 生成rdb
+  shell: kubectl apply -f /tmp/external-storage-rbd.yaml
+
+- name: 导入证书
+  shell: kubectl create secret generic ceph-secret-user --type="kubernetes.io/rbd" --from-literal=key=`cat /tmp/cephkube.key` --namespace=default
+
+- name: 导入admin证书
+  shell: kubectl create secret generic ceph-secret --type="kubernetes.io/rbd" --from-literal=key=`cat /tmp/cephadmin.key` --namespace=kube-system
+
+- name: sc文件同步
+  template:
+    src: storageclass-ceph.yaml
+    dest: /tmp/storageclass-ceph
+
+- name: 生成sc
+  shell: kubectl apply -f /tmp/storageclass-ceph
